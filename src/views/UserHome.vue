@@ -15,7 +15,7 @@
 			</div>
 			<div class="user-wapper">
 				<el-avatar icon="UserFilled" size="small" />
-				<el-dropdown trigger="click">
+				<el-dropdown trigger="click" @command="handleCommand">
 					<span class="el-dropdown-link">
 						admin
 						<el-icon class="el-icon--right">
@@ -24,7 +24,7 @@
 					</span>
 					<template #dropdown>
 						<el-dropdown-menu>
-							<el-dropdown-item>退出登录</el-dropdown-item>
+							<el-dropdown-item command="logout">退出登录</el-dropdown-item>
 						</el-dropdown-menu>
 					</template>
 				</el-dropdown>
@@ -44,6 +44,11 @@ export default {
 	methods: {
 		handleSearch() {
 			console.log('searchValue:', this.searchValue);
+		},
+		handleCommand(command) {
+			if (command === 'logout') {
+				this.$router.push('/');
+			}
 		}
 	}
 };
