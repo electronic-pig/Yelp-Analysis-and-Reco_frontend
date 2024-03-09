@@ -70,12 +70,6 @@ export default {
 </script>
 
 <style scoped>
-.el-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .search-wrapper {
   display: flex;
   align-items: center;

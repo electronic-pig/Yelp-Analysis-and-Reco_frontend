@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-aside width="auto">
-      <AsideVue :is-collapse="isCollapse" :active-index="activeIndex" />
+      <AsideView :is-collapse="isCollapse" :active-index="activeIndex" />
     </el-aside>
     <el-container>
       <el-header>
@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import AsideVue from "@/components/AsideVue.vue";
+import AsideView from "@/components/AsideView.vue";
 import TabTime from "@/components/TabTime.vue";
 import UserLogout from "@/components/UserLogout.vue";
 
 export default {
   components: {
-    AsideVue,
+    AsideView,
     TabTime,
     UserLogout,
   },
@@ -54,12 +54,6 @@ export default {
 </script>
 
 <style scoped>
-.el-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .bottom-container {
   margin-top: 20px;
   display: block;

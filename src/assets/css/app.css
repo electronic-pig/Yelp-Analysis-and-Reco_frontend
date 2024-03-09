@@ -23,6 +23,7 @@
   box-shadow: 0 0 2rem 0 rgba(41, 48, 66, 0.1);
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .collapse {
@@ -57,3 +58,5 @@
 .el-form-item__content {
   justify-content: center;
 }
+
+

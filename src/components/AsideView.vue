@@ -28,11 +28,11 @@
       @click="showLoading('BusinessHome')"
     >
       <el-icon v-show="isCollapse">
-        <DataAnalysis />
+        <Odometer />
       </el-icon>
       <template #title
         ><span class="title"
-          ><el-icon> <DataAnalysis /> </el-icon>仪表板</span
+          ><el-icon><Odometer /></el-icon>仪表板</span
         ></template
       >
     </el-menu-item>
