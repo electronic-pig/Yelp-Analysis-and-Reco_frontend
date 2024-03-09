@@ -11,7 +11,7 @@
 			<button class="btn-hover btn-color" @click="showLoginDialog = true">点击登录</button>
 		</div>
 	</div>
-	<el-dialog v-model="showLoginDialog" width="400" title="登录" top='30vh' center>
+	<el-dialog v-model="showLoginDialog" width="400" title="登录" align-center center>
 		<el-form ref="loginForm" :model="loginForm">
 			<el-form-item>
 				<el-input v-model="loginForm.username" autocomplete="off" placeholder="用户名">
