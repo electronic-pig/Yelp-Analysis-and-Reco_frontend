@@ -30,11 +30,13 @@
           <img :src="item.url" alt="image" />
         </el-carousel-item>
       </el-carousel>
+      <h2 class="reco">Recommendation</h2>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import request from "@/utils/request.js";
 import UserLogout from "@/components/UserLogout.vue";
 import image1 from "@/assets/image/p1.jpg";
 import image2 from "@/assets/image/p2.jpg";
@@ -58,7 +60,15 @@ export default {
   },
   methods: {
     handleSearch() {
-      console.log("searchValue:", this.searchValue);
+      console.log(import.meta.env.VITE_APP_BASE_URL);
+      request
+        .get("/business/search_most_business")
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
     handleCommand(command) {
       if (command === "logout") {
@@ -78,5 +88,15 @@ export default {
 .search-box {
   width: 30vw;
   margin-right: 10px;
+}
+
+.reco {
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: -0.4px;
+  line-height: 36px;
+  color: rgb(45, 46, 47);
 }
 </style>
