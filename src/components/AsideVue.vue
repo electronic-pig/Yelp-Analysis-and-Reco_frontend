@@ -1,8 +1,17 @@
 <template>
-  <el-menu id="aside-menu" :collapse="isCollapse" background-color="rgb(247,246,242)" :default-active="activeIndex">
+  <el-menu
+    id="aside-menu"
+    :collapse="isCollapse"
+    background-color="rgb(247,246,242)"
+    :default-active="activeIndex"
+  >
     <div class="platform">
       <router-link to="/">
-        <img class="platform-logo" src="@/assets/icon/yelp_dark.svg" alt="logo">
+        <img
+          class="platform-logo"
+          src="@/assets/icon/yelp_dark.svg"
+          alt="logo"
+        />
       </router-link>
       <div v-if="!isCollapse" class="platform-title">
         <a @click="goShow">点评分析及推荐</a>
@@ -13,31 +22,19 @@
       <span class="divider-title" v-show="!isCollapse">功能区</span>
     </el-divider>
 
-    <el-menu-item class="el-menu-item" index="/PowerPredict" @click="showLoading('PowerPredict')">
+    <el-menu-item
+      class="el-menu-item"
+      index="/BusinessHome"
+      @click="showLoading('BusinessHome')"
+    >
       <el-icon v-show="isCollapse">
         <DataAnalysis />
       </el-icon>
-      <template #title><span class="title"><el-icon>
-            <DataAnalysis />
-          </el-icon>功率预测</span></template>
-    </el-menu-item>
-
-    <el-menu-item class="el-menu-item" index="/DataAnalysis" @click="showLoading('DataAnalysis')">
-      <el-icon v-show="isCollapse">
-        <Histogram />
-      </el-icon>
-      <template #title><span class="title"><el-icon>
-            <Histogram />
-          </el-icon>数据分析</span></template>
-    </el-menu-item>
-
-    <el-menu-item class="el-menu-item" index="/MapPredict" @click="showLoading('MapPredict')">
-      <el-icon v-show="isCollapse">
-        <MapLocation />
-      </el-icon>
-      <template #title><span class="title"><el-icon>
-            <MapLocation />
-          </el-icon>定点预测</span></template>
+      <template #title
+        ><span class="title"
+          ><el-icon> <DataAnalysis /> </el-icon>仪表板</span
+        ></template
+      >
     </el-menu-item>
   </el-menu>
 </template>
@@ -47,27 +44,27 @@ export default {
   props: {
     isCollapse: {
       type: Boolean,
-      default: false
+      default: false,
     },
     activeIndex: {
       type: String,
-      default: '/PowerPredict'
-    }
+      default: "/BusinessHome",
+    },
   },
   methods: {
     goShow() {
-      this.$message.success('欢迎来到本平台')
+      this.$message.success("欢迎来到本平台");
     },
     showLoading(page) {
       const loadingInstance = this.$loading({
         target: document.querySelector('.el-menu-item[index="/' + page + '"]'),
-        text: '努力加载中...',
+        text: "努力加载中...",
       });
       setTimeout(() => {
         loadingInstance.close();
         this.$router.push(page);
       }, 1000);
-    }
+    },
   },
 };
 </script>
