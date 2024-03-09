@@ -12,10 +12,9 @@
           <Expand @click="goCollapse" />
         </el-icon>
         <TabTime />
+        <UserLogout />
       </el-header>
-      <el-main>
-
-      </el-main>
+      <el-main> </el-main>
     </el-container>
   </el-container>
 </template>
@@ -23,11 +22,13 @@
 <script>
 import AsideVue from "@/components/AsideVue.vue";
 import TabTime from "@/components/TabTime.vue";
+import UserLogout from "@/components/UserLogout.vue";
 
 export default {
   components: {
     AsideVue,
     TabTime,
+    UserLogout,
   },
   data() {
     return {
@@ -42,31 +43,20 @@ export default {
     document.body.style.overflow = "hidden";
   },
   updated() {
-    this.activeIndex = this.$route.path
+    this.activeIndex = this.$route.path;
   },
   methods: {
     goCollapse() {
       this.isCollapse = !this.isCollapse;
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
-.select {
-  margin-left: auto;
-  margin-right: 10px;
-}
-
-.top-container {
+.el-header {
   display: flex;
-  justify-content: space-between;
-}
-
-.middle-container {
-  margin: 20px 0;
-  display: flex;
-  height: 360px;
+  align-items: center;
   justify-content: space-between;
 }
 

@@ -1,10 +1,23 @@
 <template>
   <div class="date">
-    <vue-feather type="clock" size="24px" stroke-width="2" style="margin-right: 5px;"></vue-feather>
+    <vue-feather
+      type="clock"
+      size="24px"
+      stroke-width="2"
+      style="margin-right: 5px"
+    ></vue-feather>
     <span>{{ currenthour }}:{{ currentminute }}:{{ currentsecond }}</span>
     <span>[{{ currentyear }}-{{ currentmonth }}-{{ currentday }}]</span>
-    <a href="https://github.com/electronic-pig/WP-predict" target="_blank" style="display: flex;align-items: center;">
-      <img src="@/assets/icon/GitHub.png" alt="github" style="margin-left: 10px;">
+    <a
+      href="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend"
+      target="_blank"
+      style="display: flex; align-items: center"
+    >
+      <img
+        src="@/assets/icon/GitHub.png"
+        alt="github"
+        style="margin-left: 10px"
+      />
     </a>
   </div>
 </template>
@@ -37,10 +50,12 @@ export default {
       this.currentmonth = now.getMonth() + 1;
       this.currentday = now.getDate();
       this.currenthour = now.getHours();
-      this.currentminute = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
-      this.currentsecond = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
-    }
-  }
+      this.currentminute =
+        now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+      this.currentsecond =
+        now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
+    },
+  },
 };
 </script>
 

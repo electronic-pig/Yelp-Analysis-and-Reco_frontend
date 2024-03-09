@@ -83,11 +83,12 @@ export default {
         this.$message.error("用户名或密码不能为空");
         return;
       }
-      if (this.loginForm.identity === "user") {
+      if (this.loginForm.identity == "user") {
         localStorage.setItem("user", JSON.stringify(this.loginForm));
         this.$router.push("/UserHome");
         this.$message.success("用户登录成功!");
       } else {
+        localStorage.setItem("user", JSON.stringify(this.loginForm));
         this.$router.push("/BusinessHome");
         this.$message.success("商家登录成功!");
       }
