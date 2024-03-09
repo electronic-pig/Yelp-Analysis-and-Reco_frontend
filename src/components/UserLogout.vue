@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     icon() {
-      return this.userData.identity == "user" ? "UserFilled" : "Service";
+      return this.userData.identity == "user" ? "UserFilled" : "HomeFilled";
     },
   },
   methods: {
