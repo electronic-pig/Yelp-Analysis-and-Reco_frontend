@@ -65,6 +65,7 @@ export default {
 				return;
 			}
 			if (this.loginForm.identity === 'user') {
+				localStorage.setItem('user', JSON.stringify(this.loginForm));
 				this.$router.push('/UserHome');
 				this.$message.success('用户登录成功!');
 			}

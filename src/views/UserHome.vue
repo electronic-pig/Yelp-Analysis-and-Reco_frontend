@@ -17,7 +17,7 @@
 				<el-avatar icon="UserFilled" size="small" />
 				<el-dropdown trigger="click" @command="handleCommand">
 					<span class="el-dropdown-link">
-						admin
+						{{ userData.username }}
 						<el-icon class="el-icon--right">
 							<arrow-down />
 						</el-icon>
@@ -38,7 +38,8 @@
 export default {
 	data() {
 		return {
-			searchValue: ''
+			searchValue: '',
+			userData: JSON.parse(localStorage.getItem('user')) || {}
 		};
 	},
 	methods: {
