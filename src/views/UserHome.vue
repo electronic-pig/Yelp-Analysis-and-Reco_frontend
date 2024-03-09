@@ -24,12 +24,22 @@
       </div>
       <UserLogout />
     </el-header>
-    <el-main></el-main>
+    <el-main>
+      <el-carousel trigger="click" height="80vh">
+        <el-carousel-item v-for="item in imageUrl" :key="item">
+          <img :src="item.url" alt="image" />
+        </el-carousel-item>
+      </el-carousel>
+    </el-main>
   </el-container>
 </template>
 
 <script>
 import UserLogout from "@/components/UserLogout.vue";
+import image1 from "@/assets/image/p1.jpg";
+import image2 from "@/assets/image/p2.jpg";
+import image3 from "@/assets/image/p3.jpg";
+import image4 from "@/assets/image/p4.jpg";
 export default {
   components: {
     UserLogout,
@@ -38,6 +48,12 @@ export default {
     return {
       searchValue: "",
       userData: JSON.parse(localStorage.getItem("user")) || {},
+      imageUrl: [
+        { url: image1 },
+        { url: image2 },
+        { url: image3 },
+        { url: image4 },
+      ],
     };
   },
   methods: {
@@ -69,5 +85,4 @@ export default {
   width: 30vw;
   margin-right: 10px;
 }
-
 </style>

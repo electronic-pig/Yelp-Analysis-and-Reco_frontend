@@ -2,7 +2,7 @@
   <el-menu
     id="aside-menu"
     :collapse="isCollapse"
-    background-color="rgb(247,246,242)"
+    background-color="#fff9f9"
     :default-active="activeIndex"
   >
     <div class="platform">
