@@ -31,6 +31,11 @@
         </el-carousel-item>
       </el-carousel>
       <h2 class="reco">Recommendation</h2>
+      <ul class="list">
+        <li v-for="i in count" :key="i" class="list-item">
+          <BusinessCard />
+        </li>
+      </ul>
     </el-main>
   </el-container>
 </template>
@@ -38,6 +43,7 @@
 <script>
 import request from "@/utils/request.js";
 import UserLogout from "@/components/UserLogout.vue";
+import BusinessCard from "@/components/BusinessCard.vue";
 import image1 from "@/assets/image/p1.jpg";
 import image2 from "@/assets/image/p2.jpg";
 import image3 from "@/assets/image/p3.jpg";
@@ -45,6 +51,7 @@ import image4 from "@/assets/image/p4.jpg";
 export default {
   components: {
     UserLogout,
+    BusinessCard,
   },
   data() {
     return {
@@ -56,6 +63,7 @@ export default {
         { url: image3 },
         { url: image4 },
       ],
+      count: 10,
     };
   },
   methods: {
@@ -74,6 +82,9 @@ export default {
       if (command === "logout") {
         this.$router.push("/");
       }
+    },
+    load() {
+      this.count += 1;
     },
   },
 };
@@ -98,5 +109,16 @@ export default {
   letter-spacing: -0.4px;
   line-height: 36px;
   color: rgb(45, 46, 47);
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow: auto;
+}
+
+.list-item {
+  margin: 20px 0;
 }
 </style>
