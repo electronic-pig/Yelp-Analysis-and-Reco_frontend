@@ -28,17 +28,18 @@
 .card-container {
   display: flex;
   justify-content: space-between;
+  margin: 0 2vw;
 }
 
 .rounded-card {
   border-radius: 10px;
-  width: 31vw;
+  width: 30vw;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .rounded-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   background-color: #fff9f9;
 }
