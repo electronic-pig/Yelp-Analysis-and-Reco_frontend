@@ -74,9 +74,8 @@ export default {
   },
   methods: {
     handleSearch() {
-      console.log(import.meta.env.VITE_APP_BASE_URL);
       request
-        .get("/business/search_most_business")
+        .get("/business/most_common_business")
         .then((response) => {
           console.log(response);
         })

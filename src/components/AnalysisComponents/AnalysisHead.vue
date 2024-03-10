@@ -51,6 +51,7 @@ export default {
 <style scoped>
 .el-row {
   animation: slideInFromBottom 1s ease forwards;
+  color: #464646;
 }
 
 .el-col {

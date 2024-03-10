@@ -1,11 +1,12 @@
 <template>
   <AnalysisHead />
-  <BarChart :chartOption="chartOption" />
+  <BarChart v-if="isDataLoaded" :chartOption="chartOption" />
 </template>
 
 <script>
 import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
 import BarChart from "@/components/ChartComponents/BarChart.vue";
+import request from "@/utils/request.js";
 export default {
   name: "BusinessAnalysis",
   components: {
@@ -14,27 +15,42 @@ export default {
   },
   data() {
     return {
-      chartOption: {
-        title: {
-          text: "ECharts 入门示例",
-        },
-        tooltip: {},
-        legend: {
-          data: ["销量"],
-        },
-        xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-        },
-        yAxis: {},
-        series: [
-          {
-            name: "销量",
-            type: "bar",
-            data: [5, 20, 36, 10, 10, 20],
-          },
-        ],
-      },
+      chartOption: {},
+      isDataLoaded: false,
     };
+  },
+  async created() {
+    const response = await request({
+      url: "business/most_common_business",
+      method: "get",
+    });
+    console.log(response);
+    console.log(response.map((item) => item.name));
+    console.log(response.map((item) => item.name_count));
+    this.chartOption = {
+      title: {
+        text: "美国最常见商户(前20)",
+      },
+      tooltip: {},
+      legend: {
+        data: ["数量"],
+      },
+      xAxis: {
+        data: response.map((item) => item.name),
+      },
+      yAxis: {},
+      series: [
+        {
+          name: "数量",
+          type: "bar",
+          data: response.map((item) => item.name_count),
+          itemStyle: {
+            color: "#e20808",
+          },
+        },
+      ],
+    };
+    this.isDataLoaded = true;
   },
 };
 </script>

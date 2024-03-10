@@ -1,10 +1,5 @@
 <template>
-  <el-row
-    type="flex"
-    justify="center"
-    style="color: rgb(255, 255, 255)"
-    class="animate"
-  >
+  <el-row type="flex" justify="center" class="el-row">
     <el-col :span="4"
       ><span class="subtitle" @click="routerToBusinessAnalysis"
         >商户分析</span
@@ -27,6 +22,11 @@ export default {
 };
 </script>
 <style scoped>
+.el-row {
+  animation: slideInFromBottom 1s ease forwards;
+  color: #ffffff;
+}
+
 .el-col {
   line-height: 130px;
   text-align: center;
@@ -60,10 +60,6 @@ export default {
   left: 0%;
   right: 0%;
   width: 100%;
-}
-
-.animate {
-  animation: slideInFromBottom 1s ease forwards;
 }
 
 @keyframes slideInFromBottom {
