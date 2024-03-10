@@ -5,30 +5,23 @@
     style="color: rgb(255, 255, 255)"
     class="animate"
   >
-    <el-col :span="3"
-      ><span class="subtitle" @click="routerToBusinessHome"
+    <el-col :span="4"
+      ><span class="subtitle" @click="routerToBusinessAnalysis"
         >商户分析</span
       ></el-col
     >
-    <el-col :span="5"><span class="subtitle">用户分析</span></el-col>
-    <el-col :span="5"><span class="subtitle">评论分析</span></el-col>
-    <el-col :span="5"><span class="subtitle">评分分析</span></el-col>
-    <el-col :span="3"><span class="subtitle">打卡分析</span></el-col>
+    <el-col :span="4"><span class="subtitle">用户分析</span></el-col>
+    <el-col :span="4"><span class="subtitle">评论分析</span></el-col>
+    <el-col :span="4"><span class="subtitle">评分分析</span></el-col>
+    <el-col :span="4"><span class="subtitle">打卡分析</span></el-col>
+    <el-col :span="4"><span class="subtitle">综合分析</span></el-col>
   </el-row>
 </template>
 <script>
 export default {
   methods: {
-    routerToBusinessHome() {
-      const loadingInstance = this.$loading({
-        text: "努力加载中...", // 可以设置加载时显示的文本
-      });
-      setTimeout(() => {
-        loadingInstance.close(); // 关闭 loading
-      }, 1500);
-      setTimeout(() => {
-        this.$router.push("/BusinessHome"); // Redirect to the desired route
-      }, 1000);
+    routerToBusinessAnalysis() {
+      this.$router.push("/BusinessAnalysis");
     },
   },
 };
@@ -40,12 +33,6 @@ export default {
   height: 150px;
   font-weight: bold;
   font-family: SimHei sans-serif;
-}
-
-.logo {
-  margin-top: 20px;
-  height: 100px;
-  cursor: pointer;
 }
 
 .subtitle {
