@@ -81,7 +81,7 @@ export default {
   content: "";
   width: 0px;
   height: 3px;
-  background: rgb(226, 8, 8);
+  background: #e20808;
   position: absolute;
   top: 100%;
   left: 0%;
@@ -102,7 +102,7 @@ export default {
   content: "";
   width: 0px;
   height: 3px;
-  background: rgb(226, 8, 8);
+  background: #e20808;
   position: absolute;
   top: 100%;
   left: 50%;

@@ -1,5 +1,5 @@
 :root {
-  --theme--color: rgb(226,8,8);
+  --theme--color: #e20808;
   --el-color-primary: var(--theme--color);
   --el-color-primary-light-3: #e83f3f;
   --el-color-primary-light-5: #ef7676;
