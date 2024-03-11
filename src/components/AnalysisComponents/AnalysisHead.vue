@@ -27,9 +27,36 @@
         src="@/assets/icon/yelp_dark.svg"
         @click="routerToHome"
     /></el-col>
-    <el-col :span="4"><span class="subtitle">评分分析</span></el-col>
-    <el-col :span="4"><span class="subtitle">打卡分析</span></el-col>
-    <el-col :span="3"><span class="subtitle">综合分析</span></el-col>
+    <el-col :span="4"
+      ><span
+        :class="{
+          'subtitle-index': $route.path === '/StarsAnalysis',
+          subtitle: $route.path !== '/StarsAnalysis',
+        }"
+        @click="routerToStarsAnalysis"
+        >评分分析</span
+      ></el-col
+    >
+    <el-col :span="4"
+      ><span
+        :class="{
+          'subtitle-index': $route.path === '/CheckinAnalysis',
+          subtitle: $route.path !== '/CheckinAnalysis',
+        }"
+        @click="routerToCheckinAnalysis"
+        >打卡分析</span
+      ></el-col
+    >
+    <el-col :span="3"
+      ><span
+        :class="{
+          'subtitle-index': $route.path === '/ComprehensiveAnalysis',
+          subtitle: $route.path !== '/ComprehensiveAnalysis',
+        }"
+        @click="routerToComprehensiveAnalysis"
+        >综合分析</span
+      ></el-col
+    >
   </el-row>
   <el-divider />
 </template>
@@ -44,6 +71,15 @@ export default {
     },
     routerToUserAnalysis() {
       this.$router.push("/UserAnalysis");
+    },
+    routerToStarsAnalysis() {
+      this.$router.push("/StarsAnalysis");
+    },
+    routerToCheckinAnalysis() {
+      this.$router.push("/CheckinAnalysis");
+    },
+    routerToComprehensiveAnalysis() {
+      this.$router.push("/ComprehensiveAnalysis");
     },
   },
 };

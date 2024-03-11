@@ -22,7 +22,7 @@
           搜索
         </el-button>
       </div>
-      <UserLogout />
+      <Logout />
     </el-header>
     <el-main>
       <el-carousel trigger="click" height="80vh">
@@ -46,16 +46,16 @@
 
 <script>
 import request from "@/utils/request.js";
-import UserLogout from "@/components/UserLogout.vue";
-import BusinessCard from "@/components/BusinessCard.vue";
-import FooterView from "@/components/FooterView.vue";
+import Logout from "@/components/Logout.vue";
+import BusinessCard from "@/components/UserComponents/BusinessCard.vue";
+import FooterView from "@/components/UserComponents/FooterView.vue";
 import image1 from "@/assets/image/p1.jpg";
 import image2 from "@/assets/image/p2.jpg";
 import image3 from "@/assets/image/p3.jpg";
 import image4 from "@/assets/image/p4.jpg";
 export default {
   components: {
-    UserLogout,
+    Logout,
     BusinessCard,
     FooterView,
   },
@@ -73,8 +73,7 @@ export default {
     };
   },
   methods: {
-    handleSearch() {
-    },
+    handleSearch() {},
     handleCommand(command) {
       if (command === "logout") {
         this.$router.push("/");

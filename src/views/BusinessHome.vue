@@ -12,7 +12,7 @@
           <Expand @click="goCollapse" />
         </el-icon>
         <TabTime />
-        <UserLogout />
+        <Logout />
       </el-header>
       <el-main> </el-main>
     </el-container>
@@ -20,15 +20,15 @@
 </template>
 
 <script>
-import AsideView from "@/components/AsideView.vue";
-import TabTime from "@/components/TabTime.vue";
-import UserLogout from "@/components/UserLogout.vue";
+import AsideView from "@/components/BusinessComponents/AsideView.vue";
+import TabTime from "@/components/BusinessComponents/TabTime.vue";
+import Logout from "@/components/Logout.vue";
 
 export default {
   components: {
     AsideView,
     TabTime,
-    UserLogout,
+    Logout,
   },
   data() {
     return {

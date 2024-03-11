@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import HomeHeader from "@/components/PortalViewComponents/HomeHeader.vue";
-import MainBody from "@/components/PortalViewComponents/MainBody.vue";
+import HomeHeader from "@/components/PortalComponents/HomeHeader.vue";
+import MainBody from "@/components/PortalComponents/MainBody.vue";
 export default {
   name: "PortalView",
   components: {

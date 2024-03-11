@@ -8,7 +8,7 @@ import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
 import BarChart from "@/components/AnalysisComponents/BarChart.vue";
 import request from "@/utils/request.js";
 export default {
-  name: "BusinessAnalysis",
+  name: "CheckinAnalysis",
   components: {
     AnalysisHead,
     BarChart,

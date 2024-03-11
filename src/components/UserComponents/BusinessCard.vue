@@ -4,7 +4,7 @@
       <div class="card-content">
         <div class="card-image">
           <img
-            style="width: 100%"
+            style="width: 10vw"
             src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
             alt="description"
           />
@@ -94,7 +94,7 @@
 
 .card-text {
   flex: 2;
-  margin-left: 2vw;
+  margin-left: 1vw;
 }
 
 .review-text {

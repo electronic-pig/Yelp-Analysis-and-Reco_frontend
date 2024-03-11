@@ -5,11 +5,27 @@
         >商户分析</span
       ></el-col
     >
-    <el-col :span="4"><span class="subtitle">用户分析</span></el-col>
+    <el-col :span="4"
+      ><span class="subtitle" @click="routerToUserAnalysis"
+        >用户分析</span
+      ></el-col
+    >
     <el-col :span="4"><span class="subtitle">评论分析</span></el-col>
-    <el-col :span="4"><span class="subtitle">评分分析</span></el-col>
-    <el-col :span="4"><span class="subtitle">打卡分析</span></el-col>
-    <el-col :span="4"><span class="subtitle">综合分析</span></el-col>
+    <el-col :span="4"
+      ><span class="subtitle" @click="routerToStarsAnalysis"
+        >评分分析</span
+      ></el-col
+    >
+    <el-col :span="4"
+      ><span class="subtitle" @click="routerToCheckinAnalysis"
+        >打卡分析</span
+      ></el-col
+    >
+    <el-col :span="4"
+      ><span class="subtitle" @click="routerToComprehensiveAnalysis"
+        >综合分析</span
+      ></el-col
+    >
   </el-row>
 </template>
 <script>
@@ -17,6 +33,18 @@ export default {
   methods: {
     routerToBusinessAnalysis() {
       this.$router.push("/BusinessAnalysis");
+    },
+    routerToUserAnalysis() {
+      this.$router.push("/UserAnalysis");
+    },
+    routerToStarsAnalysis() {
+      this.$router.push("/StarsAnalysis");
+    },
+    routerToCheckinAnalysis() {
+      this.$router.push("/CheckinAnalysis");
+    },
+    routerToComprehensiveAnalysis() {
+      this.$router.push("/ComprehensiveAnalysis");
     },
   },
 };
