@@ -74,14 +74,6 @@ export default {
   },
   methods: {
     handleSearch() {
-      request
-        .get("/business/most_common_business")
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
     },
     handleCommand(command) {
       if (command === "logout") {
