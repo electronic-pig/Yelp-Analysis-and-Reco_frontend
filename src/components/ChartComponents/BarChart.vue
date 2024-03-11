@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     createChart() {
-      const chart = this.$echarts.init(this.$refs.chart);
+      const chart = this.$echarts.init(this.$refs.chart, "customed");
       chart.setOption(this.chartOption);
     },
   },

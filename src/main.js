@@ -10,6 +10,7 @@ import "element-plus/theme-chalk/display.css";
 import "@/assets/css/app.css";
 import "normalize.css";
 import * as echarts from "echarts";
+import essos from "@/assets/essos.json";
 
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -20,3 +21,4 @@ app.component(VueFeather.name, VueFeather);
 app.use(router).use(ElementPlus, { locale: zhCn }).mount("#app");
 
 app.config.globalProperties.$echarts = echarts;
+echarts.registerTheme("customed", essos);

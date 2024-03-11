@@ -24,9 +24,6 @@ export default {
       url: "business/most_common_business",
       method: "get",
     });
-    console.log(response);
-    console.log(response.map((item) => item.name));
-    console.log(response.map((item) => item.name_count));
     this.chartOption = {
       title: {
         text: "美国最常见商户(前20)",
@@ -44,9 +41,6 @@ export default {
           name: "数量",
           type: "bar",
           data: response.map((item) => item.name_count),
-          itemStyle: {
-            color: "#e20808",
-          },
         },
       ],
     };
