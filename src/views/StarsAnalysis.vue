@@ -1,46 +1,135 @@
 <template>
   <AnalysisHead />
-  <BarChart v-if="isDataLoaded" :chartOption="chartOption" />
+  <BaseChart v-if="isDataLoaded" :chartOption="chartOption1" />
+  <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
+  <BaseChart
+    style="height: 600px"
+    v-if="isDataLoaded"
+    :chartOption="chartOption3"
+  />
 </template>
 
 <script>
 import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
-import BarChart from "@/components/AnalysisComponents/BarChart.vue";
+import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
 import request from "@/utils/request.js";
 export default {
   name: "StarsAnalysis",
   components: {
     AnalysisHead,
-    BarChart,
+    BaseChart,
+  },
+  methods: {
+    getWeekday(review_week) {
+      const weekdays = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ];
+      return weekdays[review_week - 1];
+    },
   },
   data() {
     return {
-      chartOption: {},
+      chartOption1: {},
+      chartOption2: {},
+      chartOption3: {},
       isDataLoaded: false,
     };
   },
   async created() {
-    const response = await request({
-      url: "business/most_common_business",
+    const response1 = await request({
+      url: "stars/stars_count",
       method: "get",
     });
-    this.chartOption = {
+    this.chartOption1 = {
       title: {
-        text: "美国最常见商户(前20)",
+        text: "评分分布统计",
       },
       tooltip: {},
       legend: {
-        data: ["数量"],
+        data: ["评分次数"],
       },
       xAxis: {
-        data: response.map((item) => item.name),
+        data: response1.map((item) => item.rev_stars + "星"),
       },
-      yAxis: {},
+      yAxis: {
+        type: "value",
+        name: "次数",
+        axisLabel: {
+          formatter: "{value}次",
+        },
+      },
       series: [
         {
-          name: "数量",
+          name: "评分次数",
           type: "bar",
-          data: response.map((item) => item.name_count),
+          data: response1.map((item) => item.count),
+        },
+      ],
+    };
+    const response2 = await request({
+      url: "stars/stars_count_by_day_of_week",
+      method: "get",
+    });
+    this.chartOption2 = {
+      title: {
+        text: "评分周统计",
+      },
+      tooltip: {},
+      legend: {
+        data: ["评分次数"],
+      },
+      xAxis: {
+        data: response2.map((item) => this.getWeekday(item.review_week)),
+      },
+      yAxis: {
+        type: "value",
+        name: "次数",
+        min: "dataMin",
+        axisLabel: {
+          formatter: "{value}次",
+        },
+      },
+      series: [
+        {
+          name: "评分次数",
+          type: "line",
+          data: response2.map((item) => item.count),
+          smooth: false,
+        },
+      ],
+    };
+    const response3 = await request({
+      url: "stars/business_with_most_5stars",
+      method: "get",
+    });
+    this.chartOption3 = {
+      title: {
+        text: "5星评分商家统计",
+      },
+      tooltip: {},
+      legend: {
+        data: ["5星次数"],
+      },
+      xAxis: { type: "value" },
+      yAxis: {
+        type: "category",
+        data: response3.map((item) => item.name),
+      },
+      series: [
+        {
+          name: "5星次数",
+          type: "bar",
+          data: response3.map((item) => item.five_stars_count),
+          label: { show: true, position: "right" },
+          itemStyle: {
+            borderRadius: [0, 50, 50, 0],
+          },
         },
       ],
     };

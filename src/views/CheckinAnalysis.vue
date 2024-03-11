@@ -1,17 +1,17 @@
 <template>
   <AnalysisHead />
-  <BarChart v-if="isDataLoaded" :chartOption="chartOption" />
+  <BaseChart v-if="isDataLoaded" :chartOption="chartOption" />
 </template>
 
 <script>
 import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
-import BarChart from "@/components/AnalysisComponents/BarChart.vue";
+import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
 import request from "@/utils/request.js";
 export default {
   name: "CheckinAnalysis",
   components: {
     AnalysisHead,
-    BarChart,
+    BaseChart,
   },
   data() {
     return {
