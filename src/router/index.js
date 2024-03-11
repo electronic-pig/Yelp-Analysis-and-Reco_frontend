@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import PortalView from "@/views/PortalView.vue";
 import BusinessHome from "@/views/BusinessHome.vue";
 import UserHome from "@/views/UserHome.vue";
+import BusinessDetails from "@/views/BusinessDetails.vue";
 import BusinessAnalysis from "@/views/BusinessAnalysis.vue";
 import UserAnalysis from "@/views/UserAnalysis.vue";
 import StarsAnalysis from "@/views/StarsAnalysis.vue";
@@ -34,6 +35,11 @@ const router = createRouter({
       path: "/UserAnalysis",
       name: "UserAnalysis",
       component: UserAnalysis,
+    },
+    {
+      path: "/BusinessDetails",
+      name: "BusinessDetails",
+      component: BusinessDetails,
     },
     {
       path: "/StarsAnalysis",

@@ -1,28 +1,7 @@
 <template>
   <el-container>
     <el-header class="el-header">
-      <router-link to="/">
-        <img
-          class="platform-logo"
-          src="@/assets/icon/yelp_dark.svg"
-          alt="logo"
-        />
-      </router-link>
-      <div class="search-wrapper">
-        <el-input
-          class="search-box"
-          placeholder="搜索"
-          v-model="searchValue"
-          clearable
-        ></el-input>
-        <el-button type="primary" class="search-button" @click="handleSearch">
-          <el-icon>
-            <Search />
-          </el-icon>
-          搜索
-        </el-button>
-      </div>
-      <Logout />
+      <UserHeader />
     </el-header>
     <el-main>
       <el-carousel trigger="click" height="80vh">
@@ -33,7 +12,7 @@
       <h1 class="reco">Recommendation</h1>
       <ul class="list">
         <li v-for="i in 4" :key="i" class="list-item">
-          <BusinessCard />
+          <BusinessCard @click="routerToBusinessDetails" />
         </li>
       </ul>
       <div class="pagination-container">
@@ -45,24 +24,22 @@
 </template>
 
 <script>
-import request from "@/utils/request.js";
-import Logout from "@/components/Logout.vue";
+import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import BusinessCard from "@/components/UserComponents/BusinessCard.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
 import image1 from "@/assets/image/p1.jpg";
 import image2 from "@/assets/image/p2.jpg";
 import image3 from "@/assets/image/p3.jpg";
 import image4 from "@/assets/image/p4.jpg";
+
 export default {
   components: {
-    Logout,
+    UserHeader,
     BusinessCard,
     FooterView,
   },
   data() {
     return {
-      searchValue: "",
-      userData: JSON.parse(localStorage.getItem("user")) || {},
       imageUrl: [
         { url: image1 },
         { url: image2 },
@@ -73,27 +50,14 @@ export default {
     };
   },
   methods: {
-    handleSearch() {},
-    handleCommand(command) {
-      if (command === "logout") {
-        this.$router.push("/");
-      }
+    routerToBusinessDetails() {
+      this.$router.push("/businessDetails");
     },
   },
 };
 </script>
 
 <style scoped>
-.search-wrapper {
-  display: flex;
-  align-items: center;
-}
-
-.search-box {
-  width: 30vw;
-  margin-right: 10px;
-}
-
 .reco {
   font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 32px;
