@@ -1,70 +1,72 @@
 <template>
-  <div class="card-container">
-    <el-card class="rounded-card" v-for="i in 3" :key="i">
-      <div class="card-content">
-        <div class="card-image">
-          <img
-            style="width: 10vw"
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-            alt="description"
-          />
+  <el-card class="rounded-card">
+    <div class="card-content">
+      <div class="card-image">
+        <img
+          style="width: 10vw"
+          src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+          alt="description"
+        />
+      </div>
+      <div class="card-text">
+        <div class="card-header">
+          <span>Hi-Way Burger & Fry</span>
         </div>
-        <div class="card-text">
-          <div class="card-header">
-            <span>Hi-Way Burger & Fry</span>
-          </div>
-          <div style="display: flex; align-items: center">
-            <el-icon v-for="o in 2" :key="o" size="28" color="rgb(255, 100, 61)"
-              ><StarFilled
-            /></el-icon>
-            <el-icon v-for="o in 3" :key="o" size="23" color="rgb(255, 100, 61)"
-              ><Star
-            /></el-icon>
-            &nbsp;<span style="font-weight: 600">2.1</span>&nbsp;<span
-              class="review-text"
-              >(114 reviews)</span
-            >
-          </div>
-          <p class="cata-text">
-            <span>&nbsp;$$&nbsp;·</span>&nbsp;&nbsp;<span>Fast Food</span
-            >&nbsp;&nbsp;<span>American</span>
-          </p>
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              color: rgba(110, 112, 114, 1);
-            "
+        <div style="display: flex; align-items: center">
+          <el-icon v-for="o in 2" :key="o" size="28" color="rgb(255, 100, 61)"
+            ><StarFilled
+          /></el-icon>
+          <el-icon v-for="o in 3" :key="o" size="23" color="rgb(255, 100, 61)"
+            ><Star
+          /></el-icon>
+          &nbsp;<span style="font-weight: 600">2.1</span>&nbsp;<span
+            class="review-text"
+            >(114 reviews)</span
           >
-            <el-icon size="20" color="rgb(255, 100, 61)"
-              ><LocationInformation /></el-icon
-            >1616 Chapala St, Ste 2
-          </div>
-          <p class="time-text">
-            <span style="color: rgb(244, 7, 7); font-weight: bold">closed</span
-            >&nbsp;until 10:30 PM
-          </p>
-          <div class="attr-text">
-            <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
-            >&nbsp;OutDoor Seating&nbsp;
-            <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
-            >&nbsp;Delivery&nbsp;
-          </div>
+        </div>
+        <p class="cata-text">
+          <span>&nbsp;$$&nbsp;·</span>&nbsp;&nbsp;<span>Fast Food</span
+          >&nbsp;&nbsp;<span>American</span>
+        </p>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            color: rgba(110, 112, 114, 1);
+          "
+        >
+          <el-icon size="20" color="rgb(255, 100, 61)"
+            ><LocationInformation /></el-icon
+          >1616 Chapala St, Ste 2
+        </div>
+        <p class="time-text">
+          <span style="color: rgb(244, 7, 7); font-weight: bold">closed</span
+          >&nbsp;until 10:30 PM
+        </p>
+        <div class="attr-text">
+          <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
+          >&nbsp;OutDoor Seating&nbsp;
+          <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
+          >&nbsp;Delivery&nbsp;
         </div>
       </div>
-    </el-card>
-  </div>
+    </div>
+  </el-card>
 </template>
 
-<script></script>
+<script>
+export default {
+  name: "BusinessCard",
+  props: {
+    data: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
 
 <style scoped>
-.card-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 2vw;
-}
-
 .rounded-card {
   border-radius: 10px;
   width: 30vw;

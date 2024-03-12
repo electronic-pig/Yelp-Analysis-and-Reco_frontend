@@ -11,8 +11,13 @@
       </el-carousel>
       <h1 class="reco">Recommendation</h1>
       <ul class="list">
+        <!-- <li v-for="(data, index) in businessData" :key="index" class="list-item"> -->
         <li v-for="i in 4" :key="i" class="list-item">
-          <BusinessCard @click="routerToBusinessDetails" />
+          <div class="card-container">
+            <BusinessCard @click="routerToBusinessDetails" />
+            <BusinessCard @click="routerToBusinessDetails" />
+            <BusinessCard @click="routerToBusinessDetails" />
+          </div>
         </li>
       </ul>
       <div class="pagination-container">
@@ -58,6 +63,11 @@ export default {
 </script>
 
 <style scoped>
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2vw;
+}
 .reco {
   font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 32px;
