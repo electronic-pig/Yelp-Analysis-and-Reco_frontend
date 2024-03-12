@@ -36,6 +36,7 @@
 import request from "@/utils/request.js";
 import Logout from "@/components/Logout.vue";
 import citys from "@/assets/city.json";
+import homepage_reco from "@/assets/homepage_reco.json";
 
 export default {
   components: {
@@ -44,17 +45,19 @@ export default {
   data() {
     return {
       searchValue: "",
-      cityValue: "",
+      cityValue: "Abington",
       userData: JSON.parse(localStorage.getItem("user")) || {},
       citys: citys,
+      homepage_reco: homepage_reco,
     };
   },
   methods: {
     handleSearch() {
-      const response = request({
-        url: "business/most_common_business?id=admin",
-        method: "get",
-      });
+      // const response = request({
+      //   url: "search/?query=star&sortBy=review_count&filter=distance&filter_condition=(0,1)",
+      //   method: "get",
+      // });
+      this.$emit("updateSearchResult", this.homepage_reco);
     },
     handleCommand(command) {
       if (command === "logout") {

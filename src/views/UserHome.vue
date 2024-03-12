@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header class="el-header">
-      <UserHeader />
+      <UserHeader @updateSearchResult="handleUpdateSearchResult" />
     </el-header>
     <el-main>
       <el-carousel trigger="click" height="80vh">
@@ -11,17 +11,30 @@
       </el-carousel>
       <h1 class="reco">Recommendation</h1>
       <ul class="list">
-        <!-- <li v-for="(data, index) in businessData" :key="index" class="list-item"> -->
         <li v-for="i in 4" :key="i" class="list-item">
           <div class="card-container">
-            <BusinessCard @click="routerToBusinessDetails" />
-            <BusinessCard @click="routerToBusinessDetails" />
-            <BusinessCard @click="routerToBusinessDetails" />
+            <BusinessCard
+              @click="routerToBusinessDetails"
+              :data="businessData[(pagenum - 1) * 12 + (i - 1) * 3 + 0]"
+            />
+            <BusinessCard
+              @click="routerToBusinessDetails"
+              :data="businessData[(pagenum - 1) * 12 + (i - 1) * 3 + 1]"
+            />
+            <BusinessCard
+              @click="routerToBusinessDetails"
+              :data="businessData[(pagenum - 1) * 12 + (i - 1) * 3 + 2]"
+            />
           </div>
         </li>
       </ul>
       <div class="pagination-container">
-        <el-pagination background layout="prev, pager, next" :total="total" />
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="total"
+          @current-change="handleCurrentChange"
+        />
       </div>
       <FooterView />
     </el-main>
@@ -32,6 +45,7 @@
 import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import BusinessCard from "@/components/UserComponents/BusinessCard.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
+import homepage_reco from "@/assets/homepage_reco.json";
 import image1 from "@/assets/image/p1.jpg";
 import image2 from "@/assets/image/p2.jpg";
 import image3 from "@/assets/image/p3.jpg";
@@ -51,12 +65,23 @@ export default {
         { url: image3 },
         { url: image4 },
       ],
-      total: 100,
+      total: homepage_reco.length,
+      businessData: homepage_reco,
+      pagenum: 1,
     };
+  },
+  mounted() {
+    console.log(this.businessData);
   },
   methods: {
     routerToBusinessDetails() {
       this.$router.push("/businessDetails");
+    },
+    handleUpdateSearchResult(homepage_reco) {
+      this.businessData = homepage_reco;
+    },
+    handleCurrentChange(newPage) {
+      this.pagenum = newPage;
     },
   },
 };

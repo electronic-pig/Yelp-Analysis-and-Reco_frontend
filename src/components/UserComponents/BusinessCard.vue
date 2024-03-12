@@ -10,23 +10,33 @@
       </div>
       <div class="card-text">
         <div class="card-header">
-          <span>Hi-Way Burger & Fry</span>
+          <span>{{ data.name }}</span>
         </div>
         <div style="display: flex; align-items: center">
-          <el-icon v-for="o in 2" :key="o" size="28" color="rgb(255, 100, 61)"
+          <el-icon
+            v-for="o in Math.round(data.stars)"
+            :key="o"
+            size="28"
+            color="rgb(255, 100, 61)"
             ><StarFilled
           /></el-icon>
-          <el-icon v-for="o in 3" :key="o" size="23" color="rgb(255, 100, 61)"
+          <el-icon
+            v-for="o in 5 - Math.round(data.stars)"
+            :key="o"
+            size="23"
+            color="rgb(255, 100, 61)"
             ><Star
           /></el-icon>
-          &nbsp;<span style="font-weight: 600">2.1</span>&nbsp;<span
-            class="review-text"
-            >(114 reviews)</span
+          &nbsp;<span style="font-weight: 600">{{ data.stars }}</span
+          >&nbsp;<span class="review-text"
+            >({{ data.review_count }} reviews)</span
           >
         </div>
         <p class="cata-text">
-          <span>&nbsp;$$&nbsp;·</span>&nbsp;&nbsp;<span>Fast Food</span
-          >&nbsp;&nbsp;<span>American</span>
+          <span>&nbsp;$$&nbsp;·</span>&nbsp;&nbsp;<span>{{
+            data.categories.split(", ")[0]
+          }}</span
+          >&nbsp;...
         </p>
         <div
           style="
@@ -37,17 +47,24 @@
         >
           <el-icon size="20" color="rgb(255, 100, 61)"
             ><LocationInformation /></el-icon
-          >1616 Chapala St, Ste 2
+          >{{ data.address }}
         </div>
         <p class="time-text">
-          <span style="color: rgb(244, 7, 7); font-weight: bold">closed</span
-          >&nbsp;until 10:30 PM
+          <span
+            v-if="!data.is_open"
+            style="color: rgb(244, 7, 7); font-weight: bold"
+            >closed</span
+          >
+          <span
+            v-if="data.is_open"
+            style="color: rgb(2, 161, 109); font-weight: bold"
+            >open</span
+          >&nbsp;&nbsp;&nbsp;{{ Math.round(data.distance) }}m away
         </p>
         <div class="attr-text">
-          <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
-          >&nbsp;OutDoor Seating&nbsp;
-          <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
-          >&nbsp;Delivery&nbsp;
+          <el-icon size="16" color="rgb(2, 161, 109)" v-if="attr.length >= 1"
+            ><Check /></el-icon
+          >&nbsp;{{ attr[0] }}&nbsp;
         </div>
       </div>
     </div>
@@ -63,6 +80,20 @@ export default {
       required: true,
     },
   },
+  computed: {
+    attr() {
+      return Object.entries(JSON.parse(this.data.attributes))
+        .filter(([key, value]) => value === "True")
+        .map(([key, value]) => key);
+    },
+  },
+  mounted() {
+    console.log(
+      Object.entries(JSON.parse(this.data.attributes))
+        .filter(([key, value]) => value === "True")
+        .map(([key, value]) => key)
+    );
+  },
 };
 </script>
 
@@ -72,6 +103,10 @@ export default {
   width: 30vw;
   cursor: pointer;
   transition: transform 0.3s ease;
+}
+
+.rounded-card :deep(.el-card__body) {
+  padding: 18px;
 }
 
 .rounded-card:hover {
