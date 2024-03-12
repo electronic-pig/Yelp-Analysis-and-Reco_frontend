@@ -5,9 +5,9 @@ import UserHome from "@/views/UserHome.vue";
 import BusinessDetails from "@/views/BusinessDetails.vue";
 import BusinessAnalysis from "@/views/BusinessAnalysis.vue";
 import UserAnalysis from "@/views/UserAnalysis.vue";
+import ReviewAnalysis from "@/views/ReviewAnalysis.vue";
 import StarsAnalysis from "@/views/StarsAnalysis.vue";
-import CheckinAnalysis from '@/views/CheckinAnalysis.vue'
-import ComprehensiveAnalysis from "@/views/ComprehensiveAnalysis.vue";
+import CheckinAnalysis from "@/views/CheckinAnalysis.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -27,6 +27,11 @@ const router = createRouter({
       component: UserHome,
     },
     {
+      path: "/BusinessDetails",
+      name: "BusinessDetails",
+      component: BusinessDetails,
+    },
+    {
       path: "/BusinessAnalysis",
       name: "BusinessAnalysis",
       component: BusinessAnalysis,
@@ -37,9 +42,9 @@ const router = createRouter({
       component: UserAnalysis,
     },
     {
-      path: "/BusinessDetails",
-      name: "BusinessDetails",
-      component: BusinessDetails,
+      path: "/ReviewAnalysis",
+      name: "ReviewAnalysis",
+      component: ReviewAnalysis,
     },
     {
       path: "/StarsAnalysis",
@@ -50,11 +55,6 @@ const router = createRouter({
       path: "/CheckinAnalysis",
       name: "CheckinAnalysis",
       component: CheckinAnalysis,
-    },
-    {
-      path: "/ComprehensiveAnalysis",
-      name: "ComprehensiveAnalysis",
-      component: ComprehensiveAnalysis,
     },
   ],
 });

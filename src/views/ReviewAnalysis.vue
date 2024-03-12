@@ -8,7 +8,7 @@ import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
 import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
 import request from "@/utils/request.js";
 export default {
-  name: "ComprehensiveAnalysis",
+  name: "ReviewAnalysis",
   components: {
     AnalysisHead,
     BaseChart,

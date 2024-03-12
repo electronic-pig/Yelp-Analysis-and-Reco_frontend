@@ -10,7 +10,11 @@
         >用户分析</span
       ></el-col
     >
-    <el-col :span="4"><span class="subtitle">评论分析</span></el-col>
+    <el-col :span="4"
+      ><span class="subtitle" @click="routerToreviewAnalysis"
+        >评论分析</span
+      ></el-col
+    >
     <el-col :span="4"
       ><span class="subtitle" @click="routerToStarsAnalysis"
         >评分分析</span
@@ -19,11 +23,6 @@
     <el-col :span="4"
       ><span class="subtitle" @click="routerToCheckinAnalysis"
         >打卡分析</span
-      ></el-col
-    >
-    <el-col :span="4"
-      ><span class="subtitle" @click="routerToComprehensiveAnalysis"
-        >综合分析</span
       ></el-col
     >
   </el-row>
@@ -37,14 +36,14 @@ export default {
     routerToUserAnalysis() {
       this.$router.push("/UserAnalysis");
     },
+      routerToreviewAnalysis() {
+        this.$router.push("/ReviewAnalysis");
+      },
     routerToStarsAnalysis() {
       this.$router.push("/StarsAnalysis");
     },
     routerToCheckinAnalysis() {
       this.$router.push("/CheckinAnalysis");
-    },
-    routerToComprehensiveAnalysis() {
-      this.$router.push("/ComprehensiveAnalysis");
     },
   },
 };
