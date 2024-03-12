@@ -10,6 +10,7 @@ import "element-plus/theme-chalk/display.css";
 import "@/assets/css/app.css";
 import "normalize.css";
 import * as echarts from "echarts";
+import "echarts-liquidfill";
 import essos from "@/assets/essos.json";
 import BaiduMap from "vue-baidu-map-3x";
 
