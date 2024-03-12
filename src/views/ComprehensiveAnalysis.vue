@@ -28,7 +28,6 @@ export default {
       title: {
         text: "美国最常见商户(前20)",
       },
-      tooltip: {},
       legend: {
         data: ["数量"],
       },

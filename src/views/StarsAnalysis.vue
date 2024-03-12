@@ -1,7 +1,9 @@
 <template>
   <AnalysisHead />
-  <BaseChart v-if="isDataLoaded" :chartOption="chartOption1" />
-  <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
+  <div class="container">
+    <BaseChart v-if="isDataLoaded" :chartOption="chartOption1" />
+    <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
+  </div>
   <BaseChart
     style="height: 600px"
     v-if="isDataLoaded"
@@ -50,7 +52,6 @@ export default {
       title: {
         text: "评分分布统计",
       },
-      tooltip: {},
       legend: {
         data: ["评分次数"],
       },
@@ -80,7 +81,6 @@ export default {
       title: {
         text: "评分周统计",
       },
-      tooltip: {},
       legend: {
         data: ["评分次数"],
       },
@@ -112,20 +112,25 @@ export default {
       title: {
         text: "5星评分商家统计",
       },
-      tooltip: {},
       legend: {
         data: ["5星次数"],
       },
-      xAxis: { type: "value" },
+      xAxis: { type: "value", boundaryGap: [0, 0.01] },
       yAxis: {
         type: "category",
-        data: response3.map((item) => item.name),
+        data: response3
+          .slice()
+          .reverse()
+          .map((item) => item.name),
       },
       series: [
         {
           name: "5星次数",
           type: "bar",
-          data: response3.map((item) => item.five_stars_count),
+          data: response3
+            .slice()
+            .reverse()
+            .map((item) => item.five_stars_count),
           label: { show: true, position: "right" },
           itemStyle: {
             borderRadius: [0, 50, 50, 0],
@@ -137,3 +142,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
