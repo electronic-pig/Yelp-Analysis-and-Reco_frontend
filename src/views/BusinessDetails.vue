@@ -5,20 +5,33 @@
     </el-header>
     <el-main>
       <div class="main">
-        <h1 class="title">Flippin Burger</h1>
+        <h1 class="title">{{ this.details.business.name }}</h1>
         <div style="display: flex; align-items: center">
-          <el-icon v-for="o in 2" :key="o" size="47" color="rgb(255, 100, 61)"
+          <el-icon
+            v-for="o in Math.round(this.details.business.stars)"
+            :key="o"
+            size="47"
+            color="rgb(255, 100, 61)"
             ><StarFilled
           /></el-icon>
-          <el-icon v-for="o in 3" :key="o" size="38" color="rgb(255, 100, 61)"
+          <el-icon
+            v-for="o in 5 - Math.round(this.details.business.stars)"
+            :key="o"
+            size="38"
+            color="rgb(255, 100, 61)"
             ><Star
           /></el-icon>
-          &nbsp;<span style="font-weight: 600; font-size: 20px">2.1</span
-          >&nbsp;<span class="review-count">(114 reviews)</span>
+          &nbsp;<span style="font-weight: 600; font-size: 20px">{{
+            this.details.business.stars
+          }}</span
+          >&nbsp;<span class="review-count"
+            >({{ this.details.review.length }} reviews)</span
+          >
         </div>
         <p class="cata-text">
-          <span>&nbsp;$$&nbsp;·</span>&nbsp;&nbsp;<span>Fast Food</span
-          >&nbsp;&nbsp;<span>American</span>
+          <span>&nbsp;$$&nbsp;·</span>&nbsp;&nbsp;{{
+            this.details.business.categories
+          }}
         </p>
         <div
           style="
@@ -29,17 +42,36 @@
         >
           <el-icon size="20" color="rgb(255, 100, 61)"
             ><LocationInformation /></el-icon
-          >1616 Chapala St, Ste 2
+          >{{ this.details.business.address }} ,
+          {{ this.details.business.city }} ,
+          {{ this.details.business.state }}&nbsp;&nbsp;
+          {{ this.details.business.postal_code }}
         </div>
-        <p class="time-text">
-          <span style="color: rgb(244, 7, 7); font-weight: bold">closed</span
-          >&nbsp;until 10:30 PM
-        </p>
+        <div class="time-text">
+          <span
+            v-if="!this.details.business.is_open"
+            style="color: rgb(244, 7, 7); font-weight: bold"
+            >closed</span
+          >
+          <span
+            v-if="this.details.business.is_open"
+            style="color: rgb(2, 161, 109); font-weight: bold"
+            >open</span
+          >
+          <div>
+            {{ this.details.business.hours.replace(/\\|"|{|}/g, "") }}
+          </div>
+        </div>
         <div class="attr-text">
-          <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
-          >&nbsp;OutDoor Seating&nbsp;
-          <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
-          >&nbsp;Delivery&nbsp;
+          <span
+            class="attr"
+            v-for="(value, key) in JSON.parse(this.details.business.attributes)"
+            :key="key"
+            :v-if="value"
+          >
+            <el-icon size="16" color="rgb(2, 161, 109)"><Check /></el-icon
+            >&nbsp;{{ key }}&nbsp;
+          </span>
         </div>
         <el-divider />
         <baidu-map class="map" :zoom="20" :center="center" @ready="handler">
@@ -61,14 +93,16 @@
                 style="display: flex; align-items: center; margin-left: 2vw"
               >
                 <el-icon
-                  v-for="o in 2"
+                  v-for="o in this.details.review[i + this.pagenum - 2]
+                    .rev_stars"
                   :key="o"
                   size="28"
                   color="rgb(255, 100, 61)"
                   ><StarFilled
                 /></el-icon>
                 <el-icon
-                  v-for="o in 3"
+                  v-for="o in 5 -
+                  this.details.review[i + this.pagenum - 2].rev_stars"
                   :key="o"
                   size="23"
                   color="rgb(255, 100, 61)"
@@ -76,13 +110,12 @@
                 /></el-icon>
               </span>
             </div>
-            <span class="rev-time">Tue, 05 Mar 2013 18:45:07 GMT</span>
+            <span class="rev-time">{{
+              this.details.review[i + this.pagenum - 2].rev_timestamp
+            }}</span>
           </div>
           <p class="review-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            {{ this.details.review[i + this.pagenum - 2].rev_text }}
           </p>
           <div class="judge">
             <div class="judge-item">
@@ -94,7 +127,9 @@
               </div>
               <span class="judge-info">Useful</span>&nbsp;<span
                 class="judge-info-count"
-                >0</span
+                >{{
+                  this.details.review[i + this.pagenum - 2].rev_useful
+                }}</span
               >
             </div>
             <div class="judge-item">
@@ -106,7 +141,7 @@
               </div>
               <span class="judge-info">Cool</span>&nbsp;<span
                 class="judge-info-count"
-                >0</span
+                >{{ this.details.review[i + this.pagenum - 2].rev_coll }}</span
               >
             </div>
             <div class="judge-item">
@@ -118,11 +153,19 @@
               </div>
               <span class="judge-info">Funny</span>&nbsp;<span
                 class="judge-info-count"
-                >0</span
+                >{{ this.details.review[i + this.pagenum - 2].rev_funny }}</span
               >
             </div>
           </div></el-card
         >
+      </div>
+      <div class="pagination-container">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="total"
+          @current-change="handleCurrentChange"
+        />
       </div>
       <FooterView />
     </el-main>
@@ -132,6 +175,7 @@
 <script>
 import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
+import details from "@/assets/details.json";
 export default {
   components: {
     UserHeader,
@@ -143,15 +187,21 @@ export default {
         lng: 0,
         lat: 0,
       },
+      details: details,
+      total: details.review.length,
+      pagenum: 1,
     };
   },
   mounted() {
-    this.center.lng = -119.711;
-    this.center.lat = 34.4267;
+    this.center.lng = this.details.business.longitude;
+    this.center.lat = this.details.business.latitude;
   },
   methods: {
     handler({ BMap, map }) {
       console.log(BMap, map);
+    },
+    handleCurrentChange(newPage) {
+      this.pagenum = newPage;
     },
   },
 };
@@ -197,6 +247,7 @@ export default {
 
 .attr-text {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -205,6 +256,12 @@ export default {
   color: rgb(45, 46, 47);
   line-height: 16px;
   margin: 10px 0;
+}
+
+.attr {
+  display: flex;
+  align-items: center;
+  flex: 1 0 33.33%;
 }
 
 .map {
@@ -288,5 +345,11 @@ export default {
   line-height: 16px;
   text-align: left;
   color: rgb(110, 112, 114);
+}
+
+.pagination-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 </style>
