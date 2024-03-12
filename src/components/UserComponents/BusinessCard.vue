@@ -87,13 +87,6 @@ export default {
         .map(([key, value]) => key);
     },
   },
-  mounted() {
-    console.log(
-      Object.entries(JSON.parse(this.data.attributes))
-        .filter(([key, value]) => value === "True")
-        .map(([key, value]) => key)
-    );
-  },
 };
 </script>
 

@@ -2,11 +2,12 @@
   <AnalysisHead />
   <BaseChart v-if="isDataLoaded" :chartOption="chartOption1" />
   <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
+  <BaseChart v-if="isDataLoaded" :chartOption="chartOption5" />
   <div class="container">
     <BaseChart v-if="isDataLoaded" :chartOption="chartOption3" />
     <BaseChart v-if="isDataLoaded" :chartOption="chartOption4" />
   </div>
-  <BaseChart v-if="isDataLoaded" :chartOption="chartOption5" />
+  <BaseChart v-if="isDataLoaded" :chartOption="chartOption6" />
 </template>
 
 <script>
@@ -26,6 +27,7 @@ export default {
       chartOption3: {},
       chartOption4: {},
       chartOption5: {},
+      chartOption6: {},
       isDataLoaded: false,
     };
   },
@@ -166,16 +168,17 @@ export default {
       polar: {
         radius: [30, "80%"],
       },
-      angleAxis: {
-        startAngle: 75,
+      radiusAxis: {
         max: 5,
+        min: 3,
       },
       legend: {
         data: ["数量"],
       },
-      radiusAxis: {
+      angleAxis: {
         type: "category",
         data: response5.map((item) => item.city),
+        startAngle: 75,
       },
       series: {
         type: "bar",
@@ -249,7 +252,55 @@ export default {
         {
           name: "数量",
           type: "bar",
+          color: "#e83f3f",
           data: response7.map((item) => item.five_stars_count),
+        },
+      ],
+    };
+    const response8 = await request({
+      url: "business/different_types_restaurant",
+      method: "get",
+    });
+    this.chartOption6 = {
+      title: {
+        text: "商户类型数量与评论数量",
+      },
+      legend: {
+        data: ["数量", "评论数量"],
+      },
+      xAxis: {
+        data: response8.slice(11, 21).map((item) => item.category),
+        axisLabel: { interval: 0, rotate: 20 },
+      },
+      yAxis: [
+        {
+          type: "value",
+          name: "数量",
+          axisLabel: {
+            formatter: "{value} 家",
+          },
+        },
+        {
+          type: "value",
+          name: "评论数量",
+          axisLabel: {
+            formatter: "{value} 条",
+          },
+        },
+      ],
+      series: [
+        {
+          name: "数量",
+          type: "bar",
+          yAxisIndex: 0,
+          data: response8.slice(11, 21).map((item) => item.restaurant_count),
+        },
+        {
+          name: "评论数量",
+          type: "bar",
+          yAxisIndex: 1,
+          smooth: false,
+          data: response8.slice(11, 20).map((item) => item.review_count),
         },
       ],
     };

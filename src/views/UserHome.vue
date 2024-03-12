@@ -70,9 +70,6 @@ export default {
       pagenum: 1,
     };
   },
-  mounted() {
-    console.log(this.businessData);
-  },
   methods: {
     routerToBusinessDetails() {
       this.$router.push("/businessDetails");
