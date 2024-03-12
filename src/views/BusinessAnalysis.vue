@@ -2,6 +2,11 @@
   <AnalysisHead />
   <BaseChart v-if="isDataLoaded" :chartOption="chartOption1" />
   <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
+  <div class="container">
+    <BaseChart v-if="isDataLoaded" :chartOption="chartOption3" />
+    <BaseChart v-if="isDataLoaded" :chartOption="chartOption4" />
+  </div>
+  <BaseChart v-if="isDataLoaded" :chartOption="chartOption5" />
 </template>
 
 <script>
@@ -17,6 +22,10 @@ export default {
   data() {
     return {
       chartOption1: {},
+      chartOption2: {},
+      chartOption3: {},
+      chartOption4: {},
+      chartOption5: {},
       isDataLoaded: false,
     };
   },
@@ -108,6 +117,7 @@ export default {
           data: response4.map((item) => ({
             name: item.state,
             value: item.state_count,
+            selected: true,
           })),
         },
         {
@@ -145,7 +155,111 @@ export default {
         },
       ],
     };
+    const response5 = await request({
+      url: "business/highest_stars_city",
+      method: "get",
+    });
+    this.chartOption3 = {
+      title: {
+        text: "评分最高的城市",
+      },
+      polar: {
+        radius: [30, "80%"],
+      },
+      angleAxis: {
+        startAngle: 75,
+        max: 5,
+      },
+      legend: {
+        data: ["数量"],
+      },
+      radiusAxis: {
+        type: "category",
+        data: response5.map((item) => item.city),
+      },
+      series: {
+        type: "bar",
+        color: "#ee4720",
+        data: response5.map((item) => item.avg_stars.toFixed(1)),
+        coordinateSystem: "polar",
+        label: {
+          show: true,
+          position: "middle",
+          formatter: "{b}",
+        },
+      },
+    };
+    const response6 = await request({
+      url: "business/category_with_most_business",
+      method: "get",
+    });
+    this.chartOption4 = {
+      title: {
+        text: "商户数量最多的种类",
+      },
+      polar: {
+        radius: [30, "80%"],
+      },
+      angleAxis: {
+        startAngle: 75,
+      },
+      legend: {
+        data: ["数量"],
+      },
+      radiusAxis: {
+        type: "category",
+        data: response6.map((item) => item.category),
+      },
+      series: {
+        type: "bar",
+        color: "#af0606",
+        data: response6.map((item) => item.count),
+        coordinateSystem: "polar",
+        label: {
+          show: true,
+          position: "middle",
+          formatter: "{b}",
+        },
+      },
+    };
+    const response7 = await request({
+      url: "business/business_with_most_5stars",
+      method: "get",
+    });
+    this.chartOption5 = {
+      title: {
+        text: "5星评论最多的商户",
+      },
+      legend: {
+        data: ["数量"],
+      },
+      xAxis: {
+        data: response7.map((item) => item.name),
+      },
+      yAxis: [
+        {
+          type: "value",
+          name: "数量",
+          axisLabel: {
+            formatter: "{value} 次",
+          },
+        },
+      ],
+      series: [
+        {
+          name: "数量",
+          type: "bar",
+          data: response7.map((item) => item.five_stars_count),
+        },
+      ],
+    };
     this.isDataLoaded = true;
   },
 };
 </script>
+<style scoped>
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
