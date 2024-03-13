@@ -6,21 +6,20 @@
     style="height: 650px"
   />
   <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
-  <!-- <div class="container">
-    <BaseChart v-if="isDataLoaded" :chartOption="chartOption3" />
-    <BaseChart v-if="isDataLoaded" :chartOption="chartOption4" />
-  </div> -->
+  <FooterView />
 </template>
 
 <script>
 import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
 import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
+import FooterView from "@/components/UserComponents/FooterView.vue";
 import request from "@/utils/request.js";
 export default {
   name: "UserAnalysis",
   components: {
     AnalysisHead,
     BaseChart,
+    FooterView,
   },
   data() {
     return {
@@ -32,8 +31,17 @@ export default {
     };
   },
   async created() {
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
     const response1 = await request({
       url: "users/info_by_year",
+      method: "get",
+    });
+    const response2 = await request({
+      url: "users/user_with_most_review",
+      method: "get",
+    });
+    const response3 = await request({
+      url: "users/user_with_most_fans",
       method: "get",
     });
     this.chartOption1 = {
@@ -134,14 +142,6 @@ export default {
         },
       ],
     };
-    const response2 = await request({
-      url: "users/user_with_most_review",
-      method: "get",
-    });
-    const response3 = await request({
-      url: "users/user_with_most_fans",
-      method: "get",
-    });
     this.chartOption2 = {
       title: {
         text: "评论达人与人气用户",
@@ -204,87 +204,11 @@ export default {
       ],
     };
     this.isDataLoaded = true;
-  },
-  mounted() {
-    this.chartOption3 = {
-      title: {
-        text: "优质用户比例",
-      },
-      series: [
-        {
-          type: "liquidFill",
-          data: [
-            {
-              value: 0.45,
-              itemStyle: {
-                normal: {
-                  color: "#e25d3e",
-                },
-              },
-            },
-          ],
-          backgroundStyle: {
-            color: "#ffe5e0",
-          },
-          label: {
-            normal: {
-              textStyle: {
-                color: "#e25d3e",
-              },
-              formatter: function (param) {
-                return param.value * 100 + "%";
-              },
-            },
-          },
-          outline: {
-            itemStyle: {
-              borderColor: "#e25d3e",
-            },
-          },
-        },
-      ],
-    };
-    this.chartOption4 = {
-      title: {
-        text: "沉默用户比例",
-      },
-      series: [
-        {
-          type: "liquidFill",
-          data: [
-            {
-              value: 0.45,
-              itemStyle: {
-                normal: {
-                  color: "#e83f3f",
-                },
-              },
-            },
-          ],
-          backgroundStyle: {
-            color: "#f9c8c8",
-          },
-          label: {
-            normal: {
-              textStyle: {
-                color: "#e83f3f",
-              },
-              formatter: function (param) {
-                return param.value * 100 + "%";
-              },
-            },
-          },
-          outline: {
-            itemStyle: {
-              borderColor: "#e83f3f",
-            },
-          },
-        },
-      ],
-    };
+    loadingInstance.close();
   },
 };
 </script>
+
 <style scoped>
 .container {
   display: flex;

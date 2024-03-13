@@ -8,17 +8,20 @@
     <BaseChart v-if="isDataLoaded" :chartOption="chartOption3" />
     <BaseChart v-if="isDataLoaded" :chartOption="chartOption4" />
   </div>
+  <FooterView />
 </template>
 
 <script>
 import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
 import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
+import FooterView from "@/components/UserComponents/FooterView.vue";
 import request from "@/utils/request.js";
 export default {
   name: "CheckinAnalysis",
   components: {
     AnalysisHead,
     BaseChart,
+    FooterView
   },
   data() {
     return {
@@ -30,8 +33,21 @@ export default {
     };
   },
   async created() {
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
     const response1 = await request({
       url: "checkin/checkin_count_by_year",
+      method: "get",
+    });
+    const response2 = await request({
+      url: "checkin/checkin_count_by_hour",
+      method: "get",
+    });
+    const response3 = await request({
+      url: "checkin/city_with_most_checkin",
+      method: "get",
+    });
+    const response4 = await request({
+      url: "checkin/business_order_by_checkin_count",
       method: "get",
     });
     this.chartOption1 = {
@@ -53,10 +69,6 @@ export default {
         },
       ],
     };
-    const response2 = await request({
-      url: "checkin/checkin_count_by_hour",
-      method: "get",
-    });
     this.chartOption2 = {
       title: {
         text: "每小时的打卡次数",
@@ -72,22 +84,18 @@ export default {
         {
           name: "打卡次数",
           type: "line",
+          color: "orange",
           data: response2.map((item) => item.count),
         },
       ],
     };
-    const response3 = await request({
-      url: "checkin/city_with_most_checkin",
-      method: "get",
-    });
     this.chartOption3 = {
       title: {
         text: "最喜欢打卡的城市",
-        left: "center",
       },
       legend: {
         orient: "vertical",
-        top: "10%",
+        top: "20%",
         left: "10%",
         data: response3.map((item) => item.city),
       },
@@ -110,10 +118,6 @@ export default {
         },
       ],
     };
-    const response4 = await request({
-      url: "checkin/business_order_by_checkin_count",
-      method: "get",
-    });
     this.chartOption4 = {
       title: {
         text: "商家打卡排行榜(前10)",
@@ -123,18 +127,20 @@ export default {
       },
       xAxis: {
         data: response4.slice(0, 10).map((item) => item.name),
-        show: false,
+        axisLabel: { interval: 0, rotate: 15 },
       },
       yAxis: {},
       series: [
         {
           name: "打卡次数",
           type: "bar",
+          color: "#ee4720",
           data: response4.slice(0, 10).map((item) => item.checkin_count),
         },
       ],
     };
     this.isDataLoaded = true;
+    loadingInstance.close();
   },
 };
 </script>

@@ -8,17 +8,20 @@
     <BaseChart v-if="isDataLoaded" :chartOption="chartOption4" />
   </div>
   <BaseChart v-if="isDataLoaded" :chartOption="chartOption6" />
+  <FooterView />
 </template>
 
 <script>
 import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
 import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
+import FooterView from "@/components/UserComponents/FooterView.vue";
 import request from "@/utils/request.js";
 export default {
   name: "BusinessAnalysis",
   components: {
     AnalysisHead,
     BaseChart,
+    FooterView,
   },
   data() {
     return {
@@ -32,12 +35,37 @@ export default {
     };
   },
   async created() {
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
     const response1 = await request({
       url: "business/most_common_business",
       method: "get",
     });
     const response2 = await request({
       url: "business/most_common_business_with_stars",
+      method: "get",
+    });
+    const response3 = await request({
+      url: "business/city_with_most_business",
+      method: "get",
+    });
+    const response4 = await request({
+      url: "business/state_with_most_business",
+      method: "get",
+    });
+    const response5 = await request({
+      url: "business/highest_stars_city",
+      method: "get",
+    });
+    const response6 = await request({
+      url: "business/category_with_most_business",
+      method: "get",
+    });
+    const response7 = await request({
+      url: "business/business_with_most_5stars",
+      method: "get",
+    });
+    const response8 = await request({
+      url: "business/different_types_restaurant",
       method: "get",
     });
     this.chartOption1 = {
@@ -88,14 +116,6 @@ export default {
         },
       ],
     };
-    const response3 = await request({
-      url: "business/city_with_most_business",
-      method: "get",
-    });
-    const response4 = await request({
-      url: "business/state_with_most_business",
-      method: "get",
-    });
     this.chartOption2 = {
       title: {
         text: "商户最多的州与城市",
@@ -157,10 +177,6 @@ export default {
         },
       ],
     };
-    const response5 = await request({
-      url: "business/highest_stars_city",
-      method: "get",
-    });
     this.chartOption3 = {
       title: {
         text: "评分最高的城市",
@@ -192,10 +208,6 @@ export default {
         },
       },
     };
-    const response6 = await request({
-      url: "business/category_with_most_business",
-      method: "get",
-    });
     this.chartOption4 = {
       title: {
         text: "商户数量最多的种类",
@@ -225,10 +237,6 @@ export default {
         },
       },
     };
-    const response7 = await request({
-      url: "business/business_with_most_5stars",
-      method: "get",
-    });
     this.chartOption5 = {
       title: {
         text: "5星评论最多的商户",
@@ -257,10 +265,6 @@ export default {
         },
       ],
     };
-    const response8 = await request({
-      url: "business/different_types_restaurant",
-      method: "get",
-    });
     this.chartOption6 = {
       title: {
         text: "商户类型数量与评论数量",
@@ -305,9 +309,11 @@ export default {
       ],
     };
     this.isDataLoaded = true;
+    loadingInstance.close();
   },
 };
 </script>
+
 <style scoped>
 .container {
   display: flex;

@@ -9,17 +9,28 @@
     v-if="isDataLoaded"
     :chartOption="chartOption3"
   />
+  <FooterView />
 </template>
 
 <script>
 import AnalysisHead from "@/components/AnalysisComponents/AnalysisHead.vue";
 import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
+import FooterView from "@/components/UserComponents/FooterView.vue";
 import request from "@/utils/request.js";
 export default {
   name: "StarsAnalysis",
   components: {
     AnalysisHead,
     BaseChart,
+    FooterView
+  },
+  data() {
+    return {
+      chartOption1: {},
+      chartOption2: {},
+      chartOption3: {},
+      isDataLoaded: false,
+    };
   },
   methods: {
     getWeekday(review_week) {
@@ -35,17 +46,18 @@ export default {
       return weekdays[review_week - 1];
     },
   },
-  data() {
-    return {
-      chartOption1: {},
-      chartOption2: {},
-      chartOption3: {},
-      isDataLoaded: false,
-    };
-  },
   async created() {
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
     const response1 = await request({
       url: "stars/stars_count",
+      method: "get",
+    });
+    const response2 = await request({
+      url: "stars/stars_count_by_day_of_week",
+      method: "get",
+    });
+    const response3 = await request({
+      url: "stars/business_with_most_5stars",
       method: "get",
     });
     this.chartOption1 = {
@@ -73,10 +85,6 @@ export default {
         },
       ],
     };
-    const response2 = await request({
-      url: "stars/stars_count_by_day_of_week",
-      method: "get",
-    });
     this.chartOption2 = {
       title: {
         text: "评分周统计",
@@ -101,13 +109,10 @@ export default {
           type: "line",
           data: response2.map((item) => item.count),
           smooth: false,
+          color: "#f37427",
         },
       ],
     };
-    const response3 = await request({
-      url: "stars/business_with_most_5stars",
-      method: "get",
-    });
     this.chartOption3 = {
       title: {
         text: "5星评分商家统计",
@@ -127,6 +132,7 @@ export default {
         {
           name: "5星次数",
           type: "bar",
+          color: "#ee4720",
           data: response3
             .slice()
             .reverse()
@@ -139,6 +145,7 @@ export default {
       ],
     };
     this.isDataLoaded = true;
+    loadingInstance.close();
   },
 };
 </script>
