@@ -36,6 +36,21 @@
         ></template
       >
     </el-menu-item>
+
+    <el-menu-item
+      class="el-menu-item"
+      index="/AdviceHome"
+      @click="showLoading('AdviceHome')"
+    >
+      <el-icon v-show="isCollapse">
+        <HelpFilled />
+      </el-icon>
+      <template #title
+        ><span class="title"
+          ><el-icon><HelpFilled /></el-icon>经营推荐</span
+        ></template
+      >
+    </el-menu-item>
   </el-menu>
 </template>
 
@@ -54,11 +69,6 @@ export default {
   methods: {
     goShow() {
       this.$message.success("欢迎来到本平台");
-    },
-    showLoading(page) {
-      const loadingInstance = this.$loading({
-        text: "努力加载中...",
-      });
     },
   },
 };

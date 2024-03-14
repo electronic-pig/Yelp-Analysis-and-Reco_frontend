@@ -1,6 +1,7 @@
 <template>
   <div class="user-wapper">
     <el-switch
+      v-if="userData.identity === 'user'"
       class="switch"
       v-model="isBusinessReco"
       inline-prompt

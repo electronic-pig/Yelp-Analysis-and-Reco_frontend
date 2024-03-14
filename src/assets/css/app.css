@@ -59,4 +59,17 @@
   justify-content: center;
 }
 
+.el-statistic__head {
+  font-size: 14px;
+}
 
+.el-statistic__content {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.el-statistic {
+  border-radius: 5px;
+  background: linear-gradient(to bottom, rgba(227, 92, 92, 0.5), rgba(236, 232, 232, 0.5));
+  padding: 2vh;
+}

@@ -7,11 +7,13 @@
       />
     </el-header>
     <el-main>
-      <el-carousel trigger="click" height="80vh">
-        <el-carousel-item v-for="item in imageUrl" :key="item">
-          <img :src="item.url" alt="image" />
-        </el-carousel-item>
-      </el-carousel>
+      <div class="carousel">
+        <el-carousel trigger="click" height="80vh">
+          <el-carousel-item v-for="item in imageUrl" :key="item">
+            <img :src="item.url" alt="image" />
+          </el-carousel-item>
+        </el-carousel>
+      </div>
       <h1 class="reco">
         {{
           this.isBusinessReco
@@ -121,6 +123,10 @@ export default {
 </script>
 
 <style scoped>
+.carousel {
+  margin: 0 2vw;
+}
+
 .card-container {
   display: flex;
   justify-content: space-between;
