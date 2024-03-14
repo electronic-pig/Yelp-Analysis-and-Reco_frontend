@@ -9,20 +9,12 @@
           <span>{{ data.name }}</span>
         </div>
         <div style="display: flex; align-items: center">
-          <el-icon
-            v-for="o in Math.round(data.stars)"
-            :key="o"
-            size="28"
-            color="rgb(255, 100, 61)"
-            ><StarFilled
-          /></el-icon>
-          <el-icon
-            v-for="o in 5 - Math.round(data.stars)"
-            :key="o"
-            size="23"
-            color="rgb(255, 100, 61)"
-            ><Star
-          /></el-icon>
+          <el-rate
+            v-model="data.stars"
+            size="large"
+            :colors="['#ff643d', '#ff643d', '#ff643d']"
+            disabled
+          />
           &nbsp;<span style="font-weight: 600">{{ data.stars }}</span
           >&nbsp;<span class="review-text"
             >({{ data.review_count }} reviews)</span
