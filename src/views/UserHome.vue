@@ -113,7 +113,6 @@ export default {
     },
     handleUpdate(newValue) {
       this.isBusinessReco = newValue;
-      console.log(this.isBusinessReco);
     },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;

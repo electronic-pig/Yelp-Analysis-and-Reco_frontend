@@ -81,24 +81,6 @@ export default {
       this.isCollapse = document.documentElement.clientWidth <= 1100;
     };
     document.body.style.overflow = "hidden";
-    console.log(
-      this.details.review.map((item) => {
-        const date = new Date(item.rev_timestamp);
-        return [
-          date
-            .toLocaleString("zh-CN", {
-              year: "numeric",
-              month: "2-digit",
-              day: "2-digit",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-            })
-            .replace(/\//g, "-"),
-          item.rev_stars,
-        ];
-      })
-    );
   },
   async created() {
     this.chartOption = {

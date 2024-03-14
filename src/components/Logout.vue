@@ -10,7 +10,7 @@
       size="large"
       @change="handleChange"
     />
-    <el-avatar :icon="icon" size="small" />
+    <el-avatar :src="avatarUrl" size="small" />
     <el-dropdown size="large" trigger="click" @command="handleCommand">
       <span class="el-dropdown-link">
         {{ userData.username }}
@@ -36,8 +36,9 @@ export default {
     };
   },
   computed: {
-    icon() {
-      return this.userData.identity == "user" ? "UserFilled" : "HomeFilled";
+    avatarUrl() {
+      const randomId = Math.floor(Math.random() * (10352 - 10342 + 1)) + 10342;
+      return `http://118.113.19.161:8180/secure/useravatar?avatarId=${randomId}`;
     },
   },
   methods: {
