@@ -48,6 +48,48 @@
         <div class="judge-info-count">19</div>
       </div>
     </div>
+    <div class="button-container">
+      <el-button>Add friend+</el-button>
+    </div>
+    <div class="tag">
+      <el-badge :value="12" type="info">
+        <el-tag type="info" size="large" round>hot</el-tag>
+      </el-badge>
+      <el-badge :value="6" type="info">
+        <el-tag type="info" size="large" round>more</el-tag>
+      </el-badge>
+      <el-badge :value="8" type="info">
+        <el-tag type="info" size="large" round>profile</el-tag>
+      </el-badge>
+      <el-badge :value="0" type="info">
+        <el-tag type="info" size="large" round>cute</el-tag>
+      </el-badge>
+    </div>
+    <div class="tag">
+      <el-badge :value="2" type="info">
+        <el-tag type="info" size="large" round>list</el-tag>
+      </el-badge>
+      <el-badge :value="12" type="info">
+        <el-tag type="info" size="large" round>note</el-tag>
+      </el-badge>
+      <el-badge :value="16" type="info">
+        <el-tag type="info" size="large" round>plain</el-tag>
+      </el-badge>
+      <el-badge :value="15" type="info">
+        <el-tag type="info" size="large" round>cool</el-tag>
+      </el-badge>
+    </div>
+    <div class="tag">
+      <el-badge :value="18" type="info">
+        <el-tag type="info" size="large" round>funny</el-tag>
+      </el-badge>
+      <el-badge :value="19" type="info">
+        <el-tag type="info" size="large" round>writer</el-tag>
+      </el-badge>
+      <el-badge :value="2" type="info">
+        <el-tag type="info" size="large" round>photos</el-tag>
+      </el-badge>
+    </div>
   </el-card>
 </template>
 
@@ -72,7 +114,7 @@ export default {
 }
 
 .rounded-card :deep(.el-card__body) {
-  width: 60%;
+  width: 100%;
   padding: 10px;
   margin: 0;
 }
@@ -110,14 +152,18 @@ export default {
 
 .info {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: rgba(110, 112, 114, 1);
+  width: 60%;
+  margin: auto;
+  justify-content: space-between;
 }
 
 .judge {
-  margin: 10px 0;
+  width: 80%;
+  margin: 10px auto;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -153,5 +199,19 @@ export default {
   letter-spacing: 0px;
   line-height: 16px;
   color: rgb(70, 72, 73);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 30px 0;
+}
+
+.tag {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
 }
 </style>
