@@ -29,7 +29,7 @@
       搜索
     </el-button>
   </div>
-  <Logout />
+  <Logout @update:isBusinessReco="handleUpdate" />
 </template>
 
 <script>
@@ -49,6 +49,7 @@ export default {
       userData: JSON.parse(localStorage.getItem("user")) || {},
       citys: citys,
       homepage_reco: homepage_reco,
+      isBusinessReco: true,
     };
   },
   methods: {
@@ -63,6 +64,10 @@ export default {
       if (command === "logout") {
         this.$router.push("/");
       }
+    },
+    handleUpdate(newValue) {
+      this.isBusinessReco = newValue;
+      this.$emit('update:isBusinessReco', newValue);
     },
   },
 };

@@ -57,13 +57,8 @@ export default {
     },
     showLoading(page) {
       const loadingInstance = this.$loading({
-        target: document.querySelector('.el-menu-item[index="/' + page + '"]'),
         text: "努力加载中...",
       });
-      setTimeout(() => {
-        loadingInstance.close();
-        this.$router.push(page);
-      }, 1000);
     },
   },
 };

@@ -1,7 +1,10 @@
 <template>
   <el-container>
     <el-header class="el-header">
-      <UserHeader @updateSearchResult="handleUpdateSearchResult" />
+      <UserHeader
+        @updateSearchResult="handleUpdateSearchResult"
+        @update:isBusinessReco="handleUpdate"
+      />
     </el-header>
     <el-main>
       <el-carousel trigger="click" height="80vh">
@@ -9,8 +12,14 @@
           <img :src="item.url" alt="image" />
         </el-carousel-item>
       </el-carousel>
-      <h1 class="reco">Recommendation</h1>
-      <ul class="list">
+      <h1 class="reco">
+        {{
+          this.isBusinessReco
+            ? "Business Recommendation"
+            : "User Recommendation"
+        }}
+      </h1>
+      <ul class="list" v-if="this.isBusinessReco">
         <li v-for="i in 4" :key="i" class="list-item">
           <div class="card-container">
             <BusinessCard
@@ -25,6 +34,16 @@
               @click="routerToBusinessDetails"
               :data="businessData[(pagenum - 1) * 12 + (i - 1) * 3 + 2]"
             />
+          </div>
+        </li>
+      </ul>
+      <ul class="list" v-if="!this.isBusinessReco">
+        <li v-for="i in 3" :key="i" class="list-item">
+          <div class="card-container">
+            <UserCard :data="userData[0]" />
+            <UserCard :data="userData[0]" />
+            <UserCard :data="userData[0]" />
+            <UserCard :data="userData[0]" />
           </div>
         </li>
       </ul>
@@ -44,6 +63,7 @@
 <script>
 import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import BusinessCard from "@/components/UserComponents/BusinessCard.vue";
+import UserCard from "@/components/UserComponents/UserCard.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
 import homepage_reco from "@/assets/homepage_reco.json";
 import image1 from "@/assets/image/p1.jpg";
@@ -55,6 +75,7 @@ export default {
   components: {
     UserHeader,
     BusinessCard,
+    UserCard,
     FooterView,
   },
   data() {
@@ -67,8 +88,19 @@ export default {
       ],
       total: homepage_reco.length,
       businessData: homepage_reco,
+      userData: {},
       pagenum: 1,
+      isBusinessReco: true,
     };
+  },
+  computed: {
+    total() {
+      if (this.isBusinessReco) {
+        return this.businessData.length;
+      } else {
+        return 36;
+      }
+    },
   },
   methods: {
     routerToBusinessDetails() {
@@ -76,6 +108,10 @@ export default {
     },
     handleUpdateSearchResult(homepage_reco) {
       this.businessData = homepage_reco;
+    },
+    handleUpdate(newValue) {
+      this.isBusinessReco = newValue;
+      console.log(this.isBusinessReco);
     },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;

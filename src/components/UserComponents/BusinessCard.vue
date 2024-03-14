@@ -2,11 +2,7 @@
   <el-card class="rounded-card">
     <div class="card-content">
       <div class="card-image">
-        <img
-          style="width: 10vw"
-          src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-          alt="description"
-        />
+        <img style="width: 10vw; height: 10vw" src="/yelp_dark.svg" alt="img" />
       </div>
       <div class="card-text">
         <div class="card-header">

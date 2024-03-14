@@ -16,11 +16,9 @@ export default {
     MainBody,
   },
   mounted() {
-    // 当组件挂载到DOM时禁用滚动条
     document.body.style.overflow = "hidden";
   },
   beforeUnmount() {
-    // 当组件将要销毁时重新启用滚动条
     document.body.style.overflow = "";
   },
 };
