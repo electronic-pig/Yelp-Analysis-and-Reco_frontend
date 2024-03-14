@@ -1,11 +1,7 @@
 <template>
   <el-card class="rounded-card">
     <div class="avatar">
-      <el-avatar
-        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-        :size="80"
-        shape="square"
-      />
+      <el-avatar :src="avatarUrl" :size="80" />
     </div>
     <div class="content">
       <div class="name">Michelle</div>
@@ -30,8 +26,8 @@
       <div class="judge-item">
         <div class="img-wapper">
           <img
-            src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_helpful_bulb_v2.yji-927d56e36e3a11c12e58.svg"
-            alt="useful"
+            src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_thanks_v2.yji-1fec900fe14a2fa15c10.svg"
+            alt="cool"
           />
         </div>
         <div class="judge-info">Cool</div>
@@ -52,43 +48,22 @@
       <el-button>Add friend+</el-button>
     </div>
     <div class="tag">
-      <el-badge :value="12" type="info">
-        <el-tag type="info" size="large" round>hot</el-tag>
-      </el-badge>
-      <el-badge :value="6" type="info">
-        <el-tag type="info" size="large" round>more</el-tag>
-      </el-badge>
-      <el-badge :value="8" type="info">
-        <el-tag type="info" size="large" round>profile</el-tag>
-      </el-badge>
-      <el-badge :value="0" type="info">
-        <el-tag type="info" size="large" round>cute</el-tag>
-      </el-badge>
+      <el-tag type="info" size="large" round>hot {{ 12 }}</el-tag>
+      <el-tag type="info" size="large" round>more {{ 2 }}</el-tag>
+      <el-tag type="info" size="large" round>profile {{ 12 }}</el-tag>
+
+      <el-tag type="info" size="large" round>cute {{ 21 }}</el-tag>
     </div>
     <div class="tag">
-      <el-badge :value="2" type="info">
-        <el-tag type="info" size="large" round>list</el-tag>
-      </el-badge>
-      <el-badge :value="12" type="info">
-        <el-tag type="info" size="large" round>note</el-tag>
-      </el-badge>
-      <el-badge :value="16" type="info">
-        <el-tag type="info" size="large" round>plain</el-tag>
-      </el-badge>
-      <el-badge :value="15" type="info">
-        <el-tag type="info" size="large" round>cool</el-tag>
-      </el-badge>
+      <el-tag type="info" size="large" round>list {{ 13 }}</el-tag>
+      <el-tag type="info" size="large" round>funny {{ 12 }}</el-tag>
+      <el-tag type="info" size="large" round>cool {{ 21 }}</el-tag>
+      <el-tag type="info" size="large" round>plain {{ 12 }}</el-tag>
     </div>
     <div class="tag">
-      <el-badge :value="18" type="info">
-        <el-tag type="info" size="large" round>funny</el-tag>
-      </el-badge>
-      <el-badge :value="19" type="info">
-        <el-tag type="info" size="large" round>writer</el-tag>
-      </el-badge>
-      <el-badge :value="2" type="info">
-        <el-tag type="info" size="large" round>photos</el-tag>
-      </el-badge>
+      <el-tag type="info" size="large" round>writer {{ 1 }}</el-tag>
+      <el-tag type="info" size="large" round>note {{ 2 }}</el-tag>
+      <el-tag type="info" size="large" round>photos {{ 15 }}</el-tag>
     </div>
   </el-card>
 </template>
@@ -100,6 +75,12 @@ export default {
     data: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    avatarUrl() {
+      const randomId = Math.floor(Math.random() * (10352 - 10342 + 1)) + 10342;
+      return `http://118.113.19.161:8180/secure/useravatar?avatarId=${randomId}`;
     },
   },
 };
