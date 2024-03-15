@@ -4,12 +4,15 @@
       <el-avatar :src="avatarUrl" :size="80" />
     </div>
     <div class="content">
-      <div class="name">Michelle</div>
-      <div class="yelp_since">2008-07-14</div>
+      <div class="name">{{ data.user_name }}</div>
+      <div class="yelp_since">{{ data.user_yelping_since.split(" ")[0] }}</div>
       <div class="info">
-        <el-icon color="rgb(110, 112, 114)"><User /></el-icon>1
-        <el-icon color="rgb(110, 112, 114)"><EditPen /></el-icon>20
-        <el-icon color="rgb(110, 112, 114)"><StarFilled /></el-icon>4.5
+        <el-icon color="rgb(110, 112, 114)"><User /></el-icon
+        >{{ data.user_fans }}
+        <el-icon color="rgb(110, 112, 114)"><EditPen /></el-icon
+        >{{ data.user_review_count }}
+        <el-icon color="rgb(110, 112, 114)"><StarFilled /></el-icon
+        >{{ data.user_average_stars }}
       </div>
     </div>
     <div class="judge">
@@ -21,7 +24,7 @@
           />
         </div>
         <div class="judge-info">Useful</div>
-        <div class="judge-info-count">29</div>
+        <div class="judge-info-count">{{ data.user_useful }}</div>
       </div>
       <div class="judge-item">
         <div class="img-wapper">
@@ -31,7 +34,7 @@
           />
         </div>
         <div class="judge-info">Cool</div>
-        <div class="judge-info-count">8</div>
+        <div class="judge-info-count">{{ data.user_cool }}</div>
       </div>
       <div class="judge-item">
         <div class="img-wapper">
@@ -41,29 +44,51 @@
           />
         </div>
         <div class="judge-info">Funny</div>
-        <div class="judge-info-count">19</div>
+        <div class="judge-info-count">{{ data.user_funny }}</div>
       </div>
     </div>
     <div class="button-container">
       <el-button>Add friend+</el-button>
     </div>
     <div class="tag">
-      <el-tag type="info" size="large" round>hot {{ 12 }}</el-tag>
-      <el-tag type="info" size="large" round>more {{ 2 }}</el-tag>
-      <el-tag type="info" size="large" round>profile {{ 12 }}</el-tag>
+      <el-tag type="info" size="large" round
+        >hot {{ data.user_compliment_hot }}</el-tag
+      >
+      <el-tag type="info" size="large" round
+        >more {{ data.user_compliment_more }}</el-tag
+      >
+      <el-tag type="info" size="large" round
+        >profile {{ data.user_compliment_profile }}</el-tag
+      >
 
-      <el-tag type="info" size="large" round>cute {{ 21 }}</el-tag>
+      <el-tag type="info" size="large" round
+        >cute {{ data.user_compliment_cute }}</el-tag
+      >
     </div>
     <div class="tag">
-      <el-tag type="info" size="large" round>list {{ 13 }}</el-tag>
-      <el-tag type="info" size="large" round>funny {{ 12 }}</el-tag>
-      <el-tag type="info" size="large" round>cool {{ 21 }}</el-tag>
-      <el-tag type="info" size="large" round>plain {{ 12 }}</el-tag>
+      <el-tag type="info" size="large" round
+        >list {{ data.user_compliment_list }}</el-tag
+      >
+      <el-tag type="info" size="large" round
+        >funny {{ data.user_compliment_funny }}</el-tag
+      >
+      <el-tag type="info" size="large" round
+        >cool {{ data.user_compliment_cool }}</el-tag
+      >
+      <el-tag type="info" size="large" round
+        >plain {{ data.user_compliment_plain }}</el-tag
+      >
     </div>
     <div class="tag">
-      <el-tag type="info" size="large" round>writer {{ 1 }}</el-tag>
-      <el-tag type="info" size="large" round>note {{ 2 }}</el-tag>
-      <el-tag type="info" size="large" round>photos {{ 15 }}</el-tag>
+      <el-tag type="info" size="large" round
+        >writer {{ data.user_compliment_writer }}</el-tag
+      >
+      <el-tag type="info" size="large" round
+        >note {{ data.user_compliment_note }}</el-tag
+      >
+      <el-tag type="info" size="large" round
+        >photos {{ data.user_compliment_photos }}</el-tag
+      >
     </div>
   </el-card>
 </template>

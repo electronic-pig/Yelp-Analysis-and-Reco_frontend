@@ -70,9 +70,11 @@ export default {
   },
   computed: {
     attr() {
-      return Object.entries(JSON.parse(this.data.attributes))
-        .filter(([key, value]) => value === "True")
-        .map(([key, value]) => key);
+      if (this.data.attributes !== "NULL")
+        return Object.entries(JSON.parse(this.data.attributes))
+          .filter(([key, value]) => value === "True")
+          .map(([key, value]) => key);
+      else return ["No attributes available"];
     },
   },
 };

@@ -42,10 +42,10 @@
       <ul class="list" v-if="!this.isBusinessReco">
         <li v-for="i in 3" :key="i" class="list-item">
           <div class="card-container">
-            <UserCard :data="userData[0]" />
-            <UserCard :data="userData[0]" />
-            <UserCard :data="userData[0]" />
-            <UserCard :data="userData[0]" />
+            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 0]" />
+            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 1]" />
+            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 2]" />
+            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 3]" />
           </div>
         </li>
       </ul>
@@ -54,6 +54,7 @@
           background
           layout="prev, pager, next"
           :total="total"
+          :default-page-size="12"
           @current-change="handleCurrentChange"
         />
       </div>
@@ -68,6 +69,8 @@ import BusinessCard from "@/components/UserComponents/BusinessCard.vue";
 import UserCard from "@/components/UserComponents/UserCard.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
 import homepage_reco from "@/assets/homepage_reco.json";
+import frendsReco from "@/assets/friends.json";
+
 import image1 from "@/assets/image/p1.jpg";
 import image2 from "@/assets/image/p2.jpg";
 import image3 from "@/assets/image/p3.jpg";
@@ -88,9 +91,8 @@ export default {
         { url: image3 },
         { url: image4 },
       ],
-      total: homepage_reco.length,
       businessData: homepage_reco,
-      userData: {},
+      userData: frendsReco,
       pagenum: 1,
       isBusinessReco: true,
     };
@@ -100,7 +102,7 @@ export default {
       if (this.isBusinessReco) {
         return this.businessData.length;
       } else {
-        return 36;
+        return this.userData.length;
       }
     },
   },
@@ -113,6 +115,7 @@ export default {
     },
     handleUpdate(newValue) {
       this.isBusinessReco = newValue;
+      this.pagenum = 1;
     },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;

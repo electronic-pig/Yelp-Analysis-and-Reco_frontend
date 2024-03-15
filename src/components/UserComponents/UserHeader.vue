@@ -52,6 +52,7 @@ export default {
       isBusinessReco: true,
     };
   },
+  emits: ["updateSearchResult", "update:isBusinessReco"],
   methods: {
     handleSearch() {
       // const response = request({
@@ -67,7 +68,7 @@ export default {
     },
     handleUpdate(newValue) {
       this.isBusinessReco = newValue;
-      this.$emit('update:isBusinessReco', newValue);
+      this.$emit("update:isBusinessReco", newValue);
     },
   },
 };
