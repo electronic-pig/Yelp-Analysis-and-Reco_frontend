@@ -49,7 +49,7 @@ export default {
       }
     },
     handleChange(newValue) {
-      this.$emit("update:isBusinessReco", newValue);
+      this.$emit("changeReco", newValue);
     },
   },
 };

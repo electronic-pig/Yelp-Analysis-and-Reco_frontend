@@ -2,8 +2,8 @@
   <el-container>
     <el-header class="el-header">
       <UserHeader
-        @updateSearchResult="handleUpdateSearchResult"
-        @update:isBusinessReco="handleUpdate"
+        @updateReco="handleUpdateReco"
+        @changeReco="handleChangeRecon"
       />
     </el-header>
     <el-main>
@@ -65,8 +65,6 @@
 
 <script>
 import request from "@/utils/request.js";
-import homepage_reco from "@/assets/homepage_reco.json";
-import frendsReco from "@/assets/friends.json";
 import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import BusinessCard from "@/components/UserComponents/BusinessCard.vue";
 import UserCard from "@/components/UserComponents/UserCard.vue";
@@ -92,16 +90,11 @@ export default {
         { url: image3 },
         { url: image4 },
       ],
-      businessData: homepage_reco,
-      userData: frendsReco,
+      businessData: [],
+      userData: [],
       isBusinessReco: true,
       pagenum: 1,
     };
-  },
-  mounted() {
-    // request.get("/recommend/recommend?").then((response) => {
-    //   this.businessData = response;
-    // });
   },
   computed: {
     total() {
@@ -116,12 +109,23 @@ export default {
     routerToBusinessDetails() {
       this.$router.push("/businessDetails");
     },
-    handleUpdateSearchResult(response) {
+    handleUpdateReco(response) {
       this.businessData = response;
     },
-    handleUpdate(newValue) {
+    handleChangeRecon(newValue) {
+      const loadingInstance = this.$loading({ text: "努力加载中..." });
       this.isBusinessReco = newValue;
       this.pagenum = 1;
+      request({
+        url: "/friends/recommend_friends",
+        method: "get",
+      })
+        .then((response) => {
+          this.userData = response;
+        })
+        .finally(() => {
+          loadingInstance.close();
+        });
     },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;

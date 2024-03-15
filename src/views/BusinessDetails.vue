@@ -193,6 +193,9 @@ export default {
     };
   },
   mounted() {
+    this.details = this.$route.params.data;
+    this.data = this.details.review.length;
+    this.pagenum = 1;
     this.center.lng = this.details.business.longitude;
     this.center.lat = this.details.business.latitude;
   },

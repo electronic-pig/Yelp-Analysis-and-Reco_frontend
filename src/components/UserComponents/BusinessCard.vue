@@ -1,5 +1,5 @@
 <template>
-  <el-card class="rounded-card">
+  <el-card class="rounded-card" @click="handleClick">
     <div class="card-content">
       <div class="card-image">
         <img style="width: 10vw; height: 10vw" src="/yelp_dark.svg" alt="img" />
@@ -75,6 +75,14 @@ export default {
           .filter(([key, value]) => value === "True")
           .map(([key, value]) => key);
       else return ["No attributes available"];
+    },
+  },
+  methods: {
+    handleClick() {
+      this.$router.push({
+        name: "BusinessDetails",
+        params: { data: this.data },
+      });
     },
   },
 };

@@ -29,7 +29,7 @@
       搜索
     </el-button>
   </div>
-  <Logout @update:isBusinessReco="handleUpdate" />
+  <Logout @changeReco="handleChangeRecon" />
 </template>
 
 <script>
@@ -50,32 +50,57 @@ export default {
       isBusinessReco: true,
     };
   },
-  emits: ["updateSearchResult", "update:isBusinessReco"],
+  watch: {
+    cityValue(newCityValue) {
+      const loadingInstance = this.$loading({ text: "努力加载中..." });
+      request({
+        url: "/recommend/?city=" + newCityValue,
+        method: "get",
+      })
+        .then((response) => {
+          this.$emit("updateReco", response);
+        })
+        .finally(() => {
+          loadingInstance.close();
+        });
+    },
+  },
+  mounted() {
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
+    request({
+      url: "/recommend/?city=" + this.cityValue,
+      method: "get",
+    })
+      .then((response) => {
+        this.$emit("updateReco", response);
+      })
+      .finally(() => {
+        loadingInstance.close();
+      });
+  },
+  emits: ["updateReco", "changeReco"],
   methods: {
     handleSearch() {
+      const loadingInstance = this.$loading({ text: "努力加载中..." });
       request({
-        url: "/recommend/recommend?user_location=[-75.111,40.1282]",
+        url: "/search/?query=" + this.searchValue,
         method: "get",
-      }).then((response) => {
-        this.$emit("updateSearchResult", response);
-      });
+      })
+        .then((response) => {
+          this.$emit("updateReco", response);
+        })
+        .finally(() => {
+          loadingInstance.close();
+        });
     },
     handleCommand(command) {
       if (command === "logout") {
         this.$router.push("/");
       }
     },
-    handleUpdate(newValue) {
+    handleChangeRecon(newValue) {
       this.isBusinessReco = newValue;
-      this.$emit("update:isBusinessReco", newValue);
-    },
-    mounted() {
-      request({
-        url: "/recommend/recommend?user_location=[-75.111,40.1282]",
-        method: "get",
-      }).then((response) => {
-        console.log(response);
-      });
+      this.$emit("changeReco", newValue);
     },
   },
 };
