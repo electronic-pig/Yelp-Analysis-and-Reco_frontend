@@ -2,29 +2,33 @@
   <el-card class="rounded-card">
     <div class="card-content">
       <div class="card-image">
-        <img style="width: 12vw; height: 12vw" src="/yelp_dark.svg" alt="img" />
+        <img
+          style="width: 12vw; height: 12vw"
+          src=""
+          alt="img"
+        />
       </div>
       <div class="card-text">
         <div class="card-header">
-          <span>{{ data.name }}</span>
+          <span>{{ data.business_details.name }}</span>
         </div>
         <div style="display: flex; align-items: center">
           <el-rate
-            v-model="data.stars"
+            v-model="data.business_details.stars"
             size="large"
             :colors="['#ff643d', '#ff643d', '#ff643d']"
             disabled
           />
           &nbsp;<span style="font-weight: 600; font-size: 18px">{{
-            data.stars
+            data.business_details.stars
           }}</span
           >&nbsp;<span class="review-text"
-            >({{ data.review_count }} reviews)</span
+            >({{ data.reviews.length }} reviews)</span
           >
         </div>
         <p class="cata-text">
           <span>&nbsp;$$&nbsp;·</span>&nbsp;&nbsp;<span>{{
-            data.categories.split(", ")[0]
+            data.business_details.categories.split(", ")[0]
           }}</span
           >&nbsp;...
         </p>
@@ -37,19 +41,19 @@
         >
           <el-icon size="20" color="rgb(255, 100, 61)"
             ><LocationInformation /></el-icon
-          >{{ data.address }}
+          >{{ data.business_details.address }}
         </div>
         <p class="time-text">
           <span
-            v-if="!data.is_open"
+            v-if="!data.business_details.is_open"
             style="color: rgb(244, 7, 7); font-weight: bold"
             >closed</span
           >
           <span
-            v-if="data.is_open"
+            v-if="data.business_details.is_open"
             style="color: rgb(2, 161, 109); font-weight: bold"
             >open</span
-          >&nbsp;&nbsp;&nbsp;{{ Math.round(data.distance) }}m away
+          >
         </p>
         <div class="attr-text">
           <el-icon size="16" color="rgb(2, 161, 109)" v-if="attr.length >= 1"
@@ -62,6 +66,7 @@
 </template>
 
 <script>
+import photos from "@/assets/photos.json";
 export default {
   name: "BusinessCard",
   props: {
@@ -72,9 +77,15 @@ export default {
   },
   computed: {
     attr() {
-      return Object.entries(JSON.parse(this.data.attributes))
+      return Object.entries(JSON.parse(this.data.business_details.attributes))
         .filter(([key, value]) => value === "True")
         .map(([key, value]) => key);
+    },
+    imgUrl() {
+      const photo = photos.find(
+        (photo) => photo.business_id === this.data.business_details.business_id
+      );
+      return "D:/photos/AEjnOCtx34wDh5aqnSkbUA.jpg";
     },
   },
 };

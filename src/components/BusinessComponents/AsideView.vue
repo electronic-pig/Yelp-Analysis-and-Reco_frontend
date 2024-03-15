@@ -24,8 +24,8 @@
 
     <el-menu-item
       class="el-menu-item"
-      index="/BusinessHome"
-      @click="showLoading('BusinessHome')"
+      index="/BusinessBoard"
+      @click="showLoading('BusinessBoard')"
     >
       <el-icon v-show="isCollapse">
         <Odometer />
@@ -63,7 +63,7 @@ export default {
     },
     activeIndex: {
       type: String,
-      default: "/BusinessHome",
+      default: "/BusinessBoard",
     },
   },
   methods: {

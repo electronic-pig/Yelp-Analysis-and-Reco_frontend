@@ -93,13 +93,12 @@ export default {
         });
       } else {
         localStorage.setItem("user", JSON.stringify(this.loginForm));
-        // request({
-        //   url: "/login?type=business&name=" + this.loginForm.username,
-        //   method: "get",
-        // })
-        //   .then((response) => {
-        this.$router.push("/BusinessHome");
-        // });
+        request({
+          url: "/login?type=business&name=" + this.loginForm.username,
+          method: "get",
+        }).then((response) => {
+          this.$router.push("/BusinessBoard");
+        });
       }
       this.showLoginDialog = false;
     },

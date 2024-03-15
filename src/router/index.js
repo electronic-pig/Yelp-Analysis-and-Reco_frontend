@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import PortalView from "@/views/PortalView.vue";
-import BusinessHome from "@/views/BusinessHome.vue";
+import BusinessBoard from "@/views/BusinessBoard.vue";
+import ManageAdvice from "@/views/ManageAdvice.vue";
 import UserHome from "@/views/UserHome.vue";
 import BusinessDetails from "@/views/BusinessDetails.vue";
 import BusinessAnalysis from "@/views/BusinessAnalysis.vue";
@@ -17,14 +18,19 @@ const router = createRouter({
       component: PortalView,
     },
     {
-      path: "/BusinessHome",
-      name: "BusinessHome",
-      component: BusinessHome,
-    },
-    {
       path: "/UserHome",
       name: "UserHome",
       component: UserHome,
+    },
+    {
+      path: "/ManageAdvice",
+      name: "ManageAdvice",
+      component: ManageAdvice,
+    },
+    {
+      path: "/BusinessBoard",
+      name: "BusinessBoard",
+      component: BusinessBoard,
     },
     {
       path: "/BusinessDetails/:business_id",
