@@ -3,7 +3,7 @@
     <el-header class="el-header">
       <UserHeader
         @updateReco="handleUpdateReco"
-        @changeReco="handleChangeRecon"
+        @changeReco="handleChangeReco"
       />
     </el-header>
     <el-main>
@@ -25,16 +25,25 @@
         <li v-for="i in 4" :key="i" class="list-item">
           <div class="card-container">
             <BusinessCard
+              v-if="businessDataLoaded"
               @click="routerToBusinessDetails"
-              :data="businessData[(pagenum - 1) * 12 + (i - 1) * 3 + 0]"
+              :data="
+                this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 0]
+              "
             />
             <BusinessCard
+              v-if="businessDataLoaded"
               @click="routerToBusinessDetails"
-              :data="businessData[(pagenum - 1) * 12 + (i - 1) * 3 + 1]"
+              :data="
+                this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 1]
+              "
             />
             <BusinessCard
+              v-if="businessDataLoaded"
               @click="routerToBusinessDetails"
-              :data="businessData[(pagenum - 1) * 12 + (i - 1) * 3 + 2]"
+              :data="
+                this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 2]
+              "
             />
           </div>
         </li>
@@ -42,10 +51,22 @@
       <ul class="list" v-if="!this.isBusinessReco">
         <li v-for="i in 3" :key="i" class="list-item">
           <div class="card-container">
-            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 0]" />
-            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 1]" />
-            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 2]" />
-            <UserCard :data="userData[(pagenum - 1) * 12 + (i - 1) * 4 + 3]" />
+            <UserCard
+              v-if="userDataLoaded"
+              :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 0]"
+            />
+            <UserCard
+              v-if="userDataLoaded"
+              :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 1]"
+            />
+            <UserCard
+              v-if="userDataLoaded"
+              :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 2]"
+            />
+            <UserCard
+              v-if="userDataLoaded"
+              :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 3]"
+            />
           </div>
         </li>
       </ul>
@@ -90,6 +111,8 @@ export default {
         { url: image3 },
         { url: image4 },
       ],
+      businessDataLoaded: false,
+      userDataLoaded: false,
       businessData: [],
       userData: [],
       isBusinessReco: true,
@@ -111,17 +134,20 @@ export default {
     },
     handleUpdateReco(response) {
       this.businessData = response;
+      this.businessDataLoaded = true;
+      this.pagenum = 1;
     },
-    handleChangeRecon(newValue) {
+    handleChangeReco(newValue) {
       const loadingInstance = this.$loading({ text: "努力加载中..." });
       this.isBusinessReco = newValue;
-      this.pagenum = 1;
       request({
         url: "/friends/recommend_friends",
         method: "get",
       })
         .then((response) => {
           this.userData = response;
+          this.userDataLoaded = true;
+          this.pagenum = 1;
         })
         .finally(() => {
           loadingInstance.close();

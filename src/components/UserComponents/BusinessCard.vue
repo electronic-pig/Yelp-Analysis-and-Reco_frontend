@@ -65,7 +65,6 @@ export default {
   props: {
     data: {
       type: Object,
-      required: true,
     },
   },
   computed: {
@@ -79,9 +78,10 @@ export default {
   },
   methods: {
     handleClick() {
+      console.log(this.data.business_id);
       this.$router.push({
         name: "BusinessDetails",
-        params: { data: this.data },
+        params: { business_id: this.data.business_id },
       });
     },
   },

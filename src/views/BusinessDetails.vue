@@ -1,6 +1,7 @@
 <template>
   <el-container>
     <el-header class="el-header">
+      <el-button type="primary" @click="goBack">返回</el-button>
       <UserHeader />
     </el-header>
     <el-main>
@@ -82,7 +83,14 @@
           ></bm-marker>
         </baidu-map>
         <el-divider />
-        <el-card class="rounded-card" v-for="i in 8" :key="i">
+        <el-card
+          class="rounded-card"
+          :class="
+            getBgClass(this.details.review[i + this.pagenum - 2].sentiment)
+          "
+          v-for="i in 8"
+          :key="i"
+        >
           <div class="head-wapper">
             <div style="display: flex; align-items: center">
               <el-avatar icon="UserFilled" size="small" />&nbsp;<span
@@ -174,7 +182,6 @@
 
 <script>
 import request from "@/utils/request";
-import details from "@/assets/details.json";
 import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
 export default {
@@ -188,34 +195,48 @@ export default {
         lng: 0,
         lat: 0,
       },
-      details: details,
-      total: details.review.length,
+      details: {},
+      total: 0,
       pagenum: 1,
     };
   },
   mounted() {
+    console.log(this.$route.params.business_id);
     const loadingInstance = this.$loading({ text: "努力加载中..." });
     request({
-      url: "/details/?business_id=" + this.$route.params.data.business_id,
+      url:
+        "/recommend/details?business_id=" + this.$route.params.business_id,
       method: "get",
     })
       .then((response) => {
         this.details = response;
+        this.total = this.details.review.length;
+        this.pagenum = 1;
+        this.center.lng = this.details.business.longitude;
+        this.center.lat = this.details.business.latitude;
       })
       .finally(() => {
         loadingInstance.close();
       });
-    this.data = this.details.review.length;
-    this.pagenum = 1;
-    this.center.lng = this.details.business.longitude;
-    this.center.lat = this.details.business.latitude;
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     handler({ BMap, map }) {
       console.log(BMap, map);
     },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
+    },
+    getBgClass(sentiment) {
+      if (sentiment === 0) {
+        return "bg-color-positive";
+      } else if (sentiment === 1) {
+        return "bg-color-negative";
+      } else if (sentiment === 2) {
+        return "bg-color-neutral";
+      }
     },
   },
 };
@@ -359,6 +380,18 @@ export default {
   line-height: 16px;
   text-align: left;
   color: rgb(110, 112, 114);
+}
+
+.bg-color-positive {
+  background-color: "#d1edc4";
+}
+
+.bg-color-negative {
+  background-color: "#fcd3d3";
+}
+
+.bg-color-nuetral {
+  background-color: "#dedfe0";
 }
 
 .pagination-container {

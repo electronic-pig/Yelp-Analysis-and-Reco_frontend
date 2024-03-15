@@ -85,32 +85,21 @@ export default {
       }
       if (this.loginForm.identity == "user") {
         localStorage.setItem("user", JSON.stringify(this.loginForm));
-        const loadingInstance = this.$loading({ text: "努力加载中..." });
         request({
           url: "/login/?type=user&name=" + this.loginForm.username,
           method: "get",
-        })
-          .then((response) => {
-            this.$router.push("/UserHome");
-            this.$message.success("用户登录成功!");
-          })
-          .finally(() => {
-            loadingInstance.close();
-          });
+        }).then((response) => {
+          this.$router.push("/UserHome");
+        });
       } else {
         localStorage.setItem("user", JSON.stringify(this.loginForm));
-        // const loadingInstance = this.$loading({ text: "努力加载中..." });
         // request({
         //   url: "/login?type=business&name=" + this.loginForm.username,
         //   method: "get",
         // })
         //   .then((response) => {
-            this.$router.push("/BusinessHome");
-            this.$message.success("商家登录成功!");
-          // })
-          // .finally(() => {
-          //   loadingInstance.close();
-          // });
+        this.$router.push("/BusinessHome");
+        // });
       }
       this.showLoginDialog = false;
     },

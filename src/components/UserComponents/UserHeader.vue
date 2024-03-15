@@ -29,7 +29,7 @@
       搜索
     </el-button>
   </div>
-  <Logout @changeReco="handleChangeRecon" />
+  <Logout @changeReco="handleChangeReco" />
 </template>
 
 <script>
@@ -98,7 +98,7 @@ export default {
         this.$router.push("/");
       }
     },
-    handleChangeRecon(newValue) {
+    handleChangeReco(newValue) {
       this.isBusinessReco = newValue;
       this.$emit("changeReco", newValue);
     },

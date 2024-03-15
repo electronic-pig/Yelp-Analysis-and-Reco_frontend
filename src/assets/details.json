@@ -12,13 +12,13 @@
     "name": "Mr P Pizza & Pasta",
     "postal_code": "19001",
     "review_count": 61,
-    "stars": "3.0n_____",
+    "stars": 3,
     "state": "PA",
     "weighted_score": 0.3502994011976048
   },
   "business_rank": 25,
   "positive_reviews_count": 28,
-  "reviews": [
+  "review": [
     {
       "rev_business_id": "Pw77mNz6cso9quMp2NwaiA",
       "rev_cool": 0,

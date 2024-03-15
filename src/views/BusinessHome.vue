@@ -50,7 +50,7 @@
             <el-table :data="latestReviews" stripe style="width: 100%">
               <el-table-column prop="rank" label="排名" width="60">
                 <template #default="scope">
-                  <el-tag :type="success" disable-transitions>{{
+                  <el-tag type="danger" disable-transitions>{{
                     scope.$index + 1
                   }}</el-tag>
                 </template></el-table-column
@@ -61,7 +61,7 @@
             </el-table>
           </el-col>
           <el-col :span="6">
-            <BusinessCard :data="businessData[0]" />
+            <BusinessCard :data="businessData" />
             <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
           </el-col>
         </el-row>
@@ -71,12 +71,11 @@
 </template>
 
 <script>
+import details from "@/assets/details.json";
 import AsideView from "@/components/BusinessComponents/AsideView.vue";
 import TabTime from "@/components/BusinessComponents/TabTime.vue";
 import Logout from "@/components/Logout.vue";
 import BusinessCard from "@/components/BusinessComponents/BusinessCard.vue";
-import homepage_reco from "@/assets/homepage_reco.json";
-import details from "@/assets/details.json";
 import BaseChart from "@/components/AnalysisComponents/BaseChart.vue";
 
 export default {
@@ -91,11 +90,11 @@ export default {
     return {
       isCollapse: false,
       activeIndex: this.$route.path,
-      businessData: homepage_reco,
+      businessData: details.business_details,
       details: details,
       chartOption1: {},
       chartOption2: {},
-      latestReviews: [],
+      latestReviews: details.review.slice(0, 3),
     };
   },
   mounted() {
@@ -103,7 +102,6 @@ export default {
       this.isCollapse = document.documentElement.clientWidth <= 1100;
     };
     document.body.style.overflow = "hidden";
-    this.latestReviews = this.details.reviews.slice(0, 3);
   },
   async created() {
     this.chartOption1 = {
@@ -202,7 +200,6 @@ export default {
           formatter: "{value}分",
         },
       },
-      legend: {},
       series: [
         {
           name: "评分",
