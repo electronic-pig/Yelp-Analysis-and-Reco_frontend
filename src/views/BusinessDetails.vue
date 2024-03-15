@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container v-if="detailsDataloaded">
     <el-header class="el-header">
       <el-button type="primary" @click="goBack">返回</el-button>
       <UserHeader />
@@ -195,17 +195,16 @@ export default {
         lng: 0,
         lat: 0,
       },
+      detailsDataloaded: false,
       details: {},
       total: 0,
       pagenum: 1,
     };
   },
   mounted() {
-    console.log(this.$route.params.business_id);
     const loadingInstance = this.$loading({ text: "努力加载中..." });
     request({
-      url:
-        "/recommend/details?business_id=" + this.$route.params.business_id,
+      url: "/recommend/details?business_id=" + this.$route.params.business_id,
       method: "get",
     })
       .then((response) => {
@@ -214,6 +213,7 @@ export default {
         this.pagenum = 1;
         this.center.lng = this.details.business.longitude;
         this.center.lat = this.details.business.latitude;
+        this.detailsDataloaded = true;
       })
       .finally(() => {
         loadingInstance.close();
@@ -231,9 +231,9 @@ export default {
     },
     getBgClass(sentiment) {
       if (sentiment === 0) {
-        return "bg-color-positive";
-      } else if (sentiment === 1) {
         return "bg-color-negative";
+      } else if (sentiment === 1) {
+        return "bg-color-positive";
       } else if (sentiment === 2) {
         return "bg-color-neutral";
       }
@@ -383,15 +383,15 @@ export default {
 }
 
 .bg-color-positive {
-  background-color: "#d1edc4";
+  background-color: #f0f9eb;
 }
 
 .bg-color-negative {
-  background-color: "#fcd3d3";
+  background-color: #fef0f0;
 }
 
 .bg-color-nuetral {
-  background-color: "#dedfe0";
+  background-color: #c8c9cc;
 }
 
 .pagination-container {

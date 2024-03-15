@@ -40,7 +40,6 @@
             />
             <BusinessCard
               v-if="businessDataLoaded"
-              @click="routerToBusinessDetails"
               :data="
                 this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 2]
               "
@@ -129,9 +128,6 @@ export default {
     },
   },
   methods: {
-    routerToBusinessDetails() {
-      this.$router.push("/businessDetails");
-    },
     handleUpdateReco(response) {
       this.businessData = response;
       this.businessDataLoaded = true;
