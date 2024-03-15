@@ -2,7 +2,7 @@
   <HomeHeader />
   <MainBody />
   <video autoplay loop muted playsinline class="fullscreen-background-video">
-    <source src="/public/bg-video.mp4" type="video/mp4" />
+    <source src="/bg-video.mp4" type="video/mp4" />
   </video>
 </template>
 

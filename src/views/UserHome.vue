@@ -64,12 +64,13 @@
 </template>
 
 <script>
+import request from "@/utils/request.js";
+import homepage_reco from "@/assets/homepage_reco.json";
+import frendsReco from "@/assets/friends.json";
 import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import BusinessCard from "@/components/UserComponents/BusinessCard.vue";
 import UserCard from "@/components/UserComponents/UserCard.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
-import homepage_reco from "@/assets/homepage_reco.json";
-import frendsReco from "@/assets/friends.json";
 
 import image1 from "@/assets/image/p1.jpg";
 import image2 from "@/assets/image/p2.jpg";
@@ -93,9 +94,14 @@ export default {
       ],
       businessData: homepage_reco,
       userData: frendsReco,
-      pagenum: 1,
       isBusinessReco: true,
+      pagenum: 1,
     };
+  },
+  mounted() {
+    // request.get("/recommend/recommend?").then((response) => {
+    //   this.businessData = response;
+    // });
   },
   computed: {
     total() {
@@ -110,8 +116,8 @@ export default {
     routerToBusinessDetails() {
       this.$router.push("/businessDetails");
     },
-    handleUpdateSearchResult(homepage_reco) {
-      this.businessData = homepage_reco;
+    handleUpdateSearchResult(response) {
+      this.businessData = response;
     },
     handleUpdate(newValue) {
       this.isBusinessReco = newValue;
@@ -134,6 +140,7 @@ export default {
   justify-content: space-between;
   margin: 0 2vw;
 }
+
 .reco {
   font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 32px;

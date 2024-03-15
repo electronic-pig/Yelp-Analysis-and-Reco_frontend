@@ -40,6 +40,19 @@
             </el-row>
             <h3 style="margin-left: 1vw">评分数据</h3>
             <BaseChart v-if="isDataLoaded" :chartOption="chartOption" />
+            <h3 style="margin-left: 1vw">最新评论</h3>
+            <el-table :data="tableData" stripe style="width: 100%">
+              <el-table-column prop="rank" label="排名" width="60">
+                <template #default="scope">
+                  <el-tag :type="success" disable-transitions>{{
+                    scope.$index + 1
+                  }}</el-tag>
+                </template></el-table-column
+              >
+              <el-table-column prop="name" label="姓名" width="180" />
+              <el-table-column prop="review" label="评论" />
+              <el-table-column prop="date" label="时间" width="180" />
+            </el-table>
           </el-col>
           <el-col :span="6">
             <BusinessCard :data="businessData[0]" />
@@ -74,6 +87,23 @@ export default {
       businessData: homepage_reco,
       details: details,
       chartOption: {},
+      tableData: [
+        {
+          date: "2016-05-03",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles",
+        },
+        {
+          date: "2016-05-02",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles",
+        },
+        {
+          date: "2016-05-04",
+          name: "Tom",
+          address: "No. 189, Grove St, Los Angeles",
+        },
+      ],
     };
   },
   mounted() {

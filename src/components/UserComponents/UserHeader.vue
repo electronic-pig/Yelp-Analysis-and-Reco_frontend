@@ -34,9 +34,8 @@
 
 <script>
 import request from "@/utils/request.js";
-import Logout from "@/components/Logout.vue";
 import citys from "@/assets/city.json";
-import homepage_reco from "@/assets/homepage_reco.json";
+import Logout from "@/components/Logout.vue";
 
 export default {
   components: {
@@ -48,18 +47,18 @@ export default {
       cityValue: "Abington",
       userData: JSON.parse(localStorage.getItem("user")) || {},
       citys: citys,
-      homepage_reco: homepage_reco,
       isBusinessReco: true,
     };
   },
   emits: ["updateSearchResult", "update:isBusinessReco"],
   methods: {
     handleSearch() {
-      // const response = request({
-      //   url: "search/?query=star&sortBy=review_count&filter=distance&filter_condition=(0,1)",
-      //   method: "get",
-      // });
-      this.$emit("updateSearchResult", this.homepage_reco);
+      request({
+        url: "/recommend/recommend?user_location=[-75.111,40.1282]",
+        method: "get",
+      }).then((response) => {
+        this.$emit("updateSearchResult", response);
+      });
     },
     handleCommand(command) {
       if (command === "logout") {
@@ -69,6 +68,14 @@ export default {
     handleUpdate(newValue) {
       this.isBusinessReco = newValue;
       this.$emit("update:isBusinessReco", newValue);
+    },
+    mounted() {
+      request({
+        url: "/recommend/recommend?user_location=[-75.111,40.1282]",
+        method: "get",
+      }).then((response) => {
+        console.log(response);
+      });
     },
   },
 };

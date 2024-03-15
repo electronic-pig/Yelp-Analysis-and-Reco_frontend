@@ -66,13 +66,13 @@
 </template>
 
 <script scoped>
+import request from "@/utils/request.js";
 export default {
   data() {
     return {
       showLoginDialog: false,
       loginForm: {
-        identity: "user", // 这里设置默认选中的身份为用户
-        username: "",
+        identity: "user",
         password: "",
       },
     };
@@ -85,16 +85,24 @@ export default {
       }
       if (this.loginForm.identity == "user") {
         localStorage.setItem("user", JSON.stringify(this.loginForm));
-        this.$router.push("/UserHome");
-        this.$message.success("用户登录成功!");
+        request({
+          url: "/login?type=user&name=" + this.loginForm.username,
+          method: "get",
+        }).then((response) => {
+          this.$router.push("/UserHome");
+          this.$message.success("用户登录成功!");
+        });
       } else {
         localStorage.setItem("user", JSON.stringify(this.loginForm));
-        this.$router.push("/BusinessHome");
-        this.$message.success("商家登录成功!");
+        request({
+          url: "/login?type=business&name=" + this.loginForm.username,
+          method: "get",
+        }).then((response) => {
+          this.$router.push("/BusinessHome");
+          this.$message.success("商家登录成功!");
+        });
       }
-      // 关闭对话框
       this.showLoginDialog = false;
-      // 发送登录信息（例如使用 axios 发送到服务器）
     },
   },
 };

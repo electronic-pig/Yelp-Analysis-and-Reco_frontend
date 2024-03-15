@@ -44,6 +44,7 @@ export default {
   methods: {
     handleCommand(command) {
       if (command === "logout") {
+        localStorage.removeItem("user");
         this.$router.push("/");
       }
     },
