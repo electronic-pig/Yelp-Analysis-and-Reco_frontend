@@ -25,7 +25,7 @@
     <el-menu-item
       class="el-menu-item"
       index="/BusinessBoard"
-      @click="showLoading('BusinessBoard')"
+      @click="routeToBusinessBoard"
     >
       <el-icon v-show="isCollapse">
         <Odometer />
@@ -39,8 +39,8 @@
 
     <el-menu-item
       class="el-menu-item"
-      index="/AdviceHome"
-      @click="showLoading('AdviceHome')"
+      index="/ManageAdvice"
+      @click="routeToManageAdvice"
     >
       <el-icon v-show="isCollapse">
         <HelpFilled />
@@ -69,6 +69,12 @@ export default {
   methods: {
     goShow() {
       this.$message.success("欢迎来到本平台");
+    },
+    routeToBusinessBoard() {
+      this.$route.push("/BusinessBoard");
+    },
+    routeToManageAdvice() {
+      this.$route.push("/ManageAdvice");
     },
   },
 };

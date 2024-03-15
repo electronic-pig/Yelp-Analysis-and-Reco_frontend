@@ -2,11 +2,7 @@
   <el-card class="rounded-card">
     <div class="card-content">
       <div class="card-image">
-        <img
-          style="width: 12vw; height: 12vw"
-          src=""
-          alt="img"
-        />
+        <img style="width: 12vw; height: 12vw" :src="imgUrl" alt="img" />
       </div>
       <div class="card-text">
         <div class="card-header">
@@ -83,9 +79,9 @@ export default {
     },
     imgUrl() {
       const photo = photos.find(
-        (photo) => photo.business_id === this.data.business_details.business_id
+        (photo) => photo.business_id == "sFN8qmHhOn6quEZfWzs6fg"
       );
-      return "D:/photos/AEjnOCtx34wDh5aqnSkbUA.jpg";
+      return import.meta.env.VITE_APP_PHOTO_URL + "/" + photo.photo_id + ".jpg";
     },
   },
 };
