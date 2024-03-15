@@ -93,9 +93,11 @@
         >
           <div class="head-wapper">
             <div style="display: flex; align-items: center">
-              <el-avatar icon="UserFilled" size="small" />&nbsp;<span
+              <el-avatar :src="getRandomAvatarUrl()" size="small" />&nbsp;<span
                 style="font-weight: bold"
-                >User Name</span
+                >{{
+                  this.details.review[i + this.pagenum - 2].rev_user_name
+                }}</span
               >
               <span
                 style="display: flex; align-items: center; margin-left: 2vw"
@@ -226,6 +228,10 @@ export default {
     handler({ BMap, map }) {
       console.log(BMap, map);
     },
+    getRandomAvatarUrl() {
+      const randomId = Math.floor(Math.random() * (10352 - 10342 + 1)) + 10342;
+      return `http://118.113.19.161:8180/secure/useravatar?avatarId=${randomId}`;
+    },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
     },
@@ -234,7 +240,7 @@ export default {
         return "bg-color-negative";
       } else if (sentiment === 1) {
         return "bg-color-positive";
-      } else if (sentiment === 2) {
+      } else {
         return "bg-color-neutral";
       }
     },
@@ -315,9 +321,8 @@ export default {
 }
 
 .rounded-card {
-  border-radius: 4px;
+  border-radius: 6px;
   width: 100%;
-  transition: transform 0.3s ease;
   margin: 1vh 0;
 }
 
@@ -390,8 +395,8 @@ export default {
   background-color: #fef0f0;
 }
 
-.bg-color-nuetral {
-  background-color: #c8c9cc;
+.bg-color-neutral {
+  background-color: #f4f4f5;
 }
 
 .pagination-container {

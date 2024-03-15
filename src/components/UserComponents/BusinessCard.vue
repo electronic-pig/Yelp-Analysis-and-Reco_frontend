@@ -78,7 +78,6 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log(this.data.business_id);
       this.$router.push({
         name: "BusinessDetails",
         params: { business_id: this.data.business_id },

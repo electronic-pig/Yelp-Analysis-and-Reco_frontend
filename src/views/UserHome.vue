@@ -26,14 +26,12 @@
           <div class="card-container">
             <BusinessCard
               v-if="businessDataLoaded"
-              @click="routerToBusinessDetails"
               :data="
                 this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 0]
               "
             />
             <BusinessCard
               v-if="businessDataLoaded"
-              @click="routerToBusinessDetails"
               :data="
                 this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 1]
               "
