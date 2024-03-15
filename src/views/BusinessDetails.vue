@@ -173,9 +173,10 @@
 </template>
 
 <script>
+import request from "@/utils/request";
+import details from "@/assets/details.json";
 import UserHeader from "@/components/UserComponents/UserHeader.vue";
 import FooterView from "@/components/UserComponents/FooterView.vue";
-import details from "@/assets/details.json";
 export default {
   components: {
     UserHeader,
@@ -193,7 +194,17 @@ export default {
     };
   },
   mounted() {
-    this.details = this.$route.params.data;
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
+    request({
+      url: "/details/?business_id=" + this.$route.params.data.business_id,
+      method: "get",
+    })
+      .then((response) => {
+        this.details = response;
+      })
+      .finally(() => {
+        loadingInstance.close();
+      });
     this.data = this.details.review.length;
     this.pagenum = 1;
     this.center.lng = this.details.business.longitude;

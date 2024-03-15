@@ -32,16 +32,22 @@
                 />
               </el-col>
               <el-col class="col" :span="6">
-                <el-statistic title="好评人数" :value="298" />
+                <el-statistic
+                  title="好评人数"
+                  :value="this.details.positive_reviews_count"
+                />
               </el-col>
               <el-col class="col" :span="6">
-                <el-statistic title="当前类别综合排名" :value="52" />
+                <el-statistic
+                  title="当前类别综合排名"
+                  :value="this.details.business_rank"
+                />
               </el-col>
             </el-row>
             <h3 style="margin-left: 1vw">评分数据</h3>
-            <BaseChart v-if="isDataLoaded" :chartOption="chartOption" />
+            <BaseChart v-if="isDataLoaded" :chartOption="chartOption1" />
             <h3 style="margin-left: 1vw">最新评论</h3>
-            <el-table :data="tableData" stripe style="width: 100%">
+            <el-table :data="latestReviews" stripe style="width: 100%">
               <el-table-column prop="rank" label="排名" width="60">
                 <template #default="scope">
                   <el-tag :type="success" disable-transitions>{{
@@ -49,13 +55,14 @@
                   }}</el-tag>
                 </template></el-table-column
               >
-              <el-table-column prop="name" label="姓名" width="180" />
-              <el-table-column prop="review" label="评论" />
-              <el-table-column prop="date" label="时间" width="180" />
+              <el-table-column prop="rev_user_name" label="姓名" width="180" />
+              <el-table-column prop="rev_text" label="评论" />
+              <el-table-column prop="rev_timestamp" label="时间" width="180" />
             </el-table>
           </el-col>
           <el-col :span="6">
             <BusinessCard :data="businessData[0]" />
+            <BaseChart v-if="isDataLoaded" :chartOption="chartOption2" />
           </el-col>
         </el-row>
       </el-main>
@@ -86,24 +93,9 @@ export default {
       activeIndex: this.$route.path,
       businessData: homepage_reco,
       details: details,
-      chartOption: {},
-      tableData: [
-        {
-          date: "2016-05-03",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-02",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-        {
-          date: "2016-05-04",
-          name: "Tom",
-          address: "No. 189, Grove St, Los Angeles",
-        },
-      ],
+      chartOption1: {},
+      chartOption2: {},
+      latestReviews: [],
     };
   },
   mounted() {
@@ -111,9 +103,10 @@ export default {
       this.isCollapse = document.documentElement.clientWidth <= 1100;
     };
     document.body.style.overflow = "hidden";
+    this.latestReviews = this.details.reviews.slice(0, 3);
   },
   async created() {
-    this.chartOption = {
+    this.chartOption1 = {
       legend: {
         data: ["评分"],
       },
@@ -191,6 +184,30 @@ export default {
             })
             .sort((a, b) => new Date(a.date) - new Date(b.date))
             .map((item) => [item.date, item.stars]),
+        },
+      ],
+    };
+    this.chartOption2 = {
+      xAxis: {
+        type: "category",
+        data: this.details.star_count.map((item) => item.rev_stars),
+        axisLabel: {
+          formatter: "{value}星",
+        },
+      },
+      yAxis: {
+        type: "value",
+        name: "评分",
+        axisLabel: {
+          formatter: "{value}分",
+        },
+      },
+      legend: {},
+      series: [
+        {
+          name: "评分",
+          type: "bar",
+          data: this.details.star_count.map((item) => item.count),
         },
       ],
     };
