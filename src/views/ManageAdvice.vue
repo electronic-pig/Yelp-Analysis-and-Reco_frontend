@@ -15,6 +15,9 @@
         <Logout />
       </el-header>
       <el-main>
+        <div class="container">
+          <base-chart v-if="isDataLoaded" :chartOption="chartOption" />
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -37,6 +40,7 @@ export default {
     return {
       isCollapse: false,
       activeIndex: this.$route.path,
+      chartOption:{}
     };
   },
   mounted() {
@@ -71,4 +75,8 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  justify-content: space-between;
+}
 </style>

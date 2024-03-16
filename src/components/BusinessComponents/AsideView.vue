@@ -71,10 +71,10 @@ export default {
       this.$message.success("欢迎来到本平台");
     },
     routeToBusinessBoard() {
-      this.$route.push("/BusinessBoard");
+      this.$router.push("/BusinessBoard");
     },
     routeToManageAdvice() {
-      this.$route.push("/ManageAdvice");
+      this.$router.push("/ManageAdvice");
     },
   },
 };

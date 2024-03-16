@@ -2,7 +2,11 @@
   <el-card class="rounded-card" @click="handleClick">
     <div class="card-content">
       <div class="card-image">
-        <img style="width: 10vw; height: 10vw" :src="imgUrl" alt="img" />
+        <el-image
+          style="width: 10vw; height: 10vw"
+          :src="getRandomImageUrl()"
+          alt="img"
+        />
       </div>
       <div class="card-text">
         <div class="card-header">
@@ -62,7 +66,6 @@
 <script>
 import photos from "@/assets/photos.json";
 export default {
-  name: "BusinessCard",
   props: {
     data: {
       type: Object,
@@ -76,13 +79,6 @@ export default {
           .map(([key, value]) => key);
       else return ["No attributes available"];
     },
-    imgUrl() {
-      if (photos.length > 0) {
-        const randomIndex = Math.floor(Math.random() * photos.length);
-        const photo = photos[randomIndex];
-        return import.meta.env.VITE_APP_PHOTO_URL + "/" + photo.photo_id + ".jpg";
-      }
-    },
   },
   methods: {
     handleClick() {
@@ -90,6 +86,12 @@ export default {
         name: "BusinessDetails",
         params: { business_id: this.data.business_id },
       });
+    },
+    getRandomImageUrl() {
+      const randomIndex = Math.floor(Math.random() * photos.length);
+      const photo = photos[randomIndex];
+      this.loading = false;
+      return import.meta.env.VITE_APP_PHOTO_URL + "/" + photo.photo_id + ".jpg";
     },
   },
 };
