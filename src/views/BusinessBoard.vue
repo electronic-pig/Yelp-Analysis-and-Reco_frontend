@@ -98,137 +98,126 @@ export default {
       isDataLoaded: false,
     };
   },
-  mounted() {
-    window.onresize = () => {
-      this.isCollapse = document.documentElement.clientWidth <= 1100;
-    };
-    document.body.style.overflow = "hidden";
-    const loadingInstance = this.$loading({ text: "努力加载中..." });
-    request({
-      url: "/boards/get_board",
-      method: "get",
-    })
-      .then((response) => {
-        this.businessData = response;
-        this.latestReviews = response.reviews.slice(0, 3);
-        this.businessDataLoaded = true;
-        this.chartOption1 = {
-          legend: {
-            data: ["评分"],
-          },
-          xAxis: {
-            type: "time",
-          },
-          yAxis: {
-            type: "value",
-            name: "评分",
-            axisLabel: {
-              formatter: "{value}分",
-            },
-          },
-          dataZoom: [
-            {
-              start: 30,
-              end: 40,
-              backgroundColor: "white",
-              handleStyle: {
-                color: "#fff",
-                borderColor: "#f29191",
-              },
-              dataBackground: {
-                lineStyle: {
-                  color: "#f29191",
-                },
-                areaStyle: {
-                  color: "#f9c8c8",
-                },
-              },
-              selectedDataBackground: {
-                lineStyle: {
-                  color: "#e20808",
-                },
-                areaStyle: {
-                  color: "#ef7676",
-                },
-              },
-              moveHandleStyle: {
-                color: "#e83f3f",
-              },
-              brushSelect: false,
-              emphasis: {
-                handleStyle: {
-                  color: "#f29191",
-                  borderColor: "#f29191",
-                },
-                moveHandleStyle: {
-                  color: "#e83f3f",
-                },
-              },
-            },
-          ],
-          series: [
-            {
-              name: "评分",
-              type: "line",
-              color: "#ee4720",
-              data: this.businessData.reviews
-                .map((item) => {
-                  const date = new Date(item.rev_timestamp);
-                  return {
-                    date: date
-                      .toLocaleString("zh-CN", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        second: "2-digit",
-                      })
-                      .replace(/\//g, "-"),
-                    stars: item.rev_stars,
-                  };
-                })
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
-                .map((item) => [item.date, item.stars]),
-            },
-          ],
-        };
-        this.chartOption2 = {
-          xAxis: {
-            type: "category",
-            data: this.businessData.star_count.map((item) => item.rev_stars),
-            axisLabel: {
-              formatter: "{value}星",
-            },
-          },
-          yAxis: {
-            type: "value",
-            name: "评分",
-            axisLabel: {
-              formatter: "{value}分",
-            },
-          },
-          series: [
-            {
-              name: "评分",
-              type: "bar",
-              data: this.businessData.star_count.map((item) => item.count),
-            },
-          ],
-        };
-        this.isDataLoaded = true;
-      })
-      .finally(() => {
-        loadingInstance.close();
-      });
-  },
-  updated() {
-    this.activeIndex = this.$route.path;
-  },
   methods: {
     goCollapse() {
       this.isCollapse = !this.isCollapse;
     },
+  },
+  async created() {
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
+    const response = await request({
+      url: "boards/get_board",
+      method: "get",
+    });
+    this.businessData = response;
+    this.latestReviews = response.reviews.slice(0, 3);
+    this.businessDataLoaded = true;
+    this.isDataLoaded = true;
+    this.chartOption1 = {
+      legend: {
+        data: ["评分"],
+      },
+      xAxis: {
+        type: "time",
+      },
+      yAxis: {
+        type: "value",
+        name: "评分",
+        axisLabel: {
+          formatter: "{value}分",
+        },
+      },
+      dataZoom: [
+        {
+          start: 30,
+          end: 40,
+          backgroundColor: "white",
+          handleStyle: {
+            color: "#fff",
+            borderColor: "#f29191",
+          },
+          dataBackground: {
+            lineStyle: {
+              color: "#f29191",
+            },
+            areaStyle: {
+              color: "#f9c8c8",
+            },
+          },
+          selectedDataBackground: {
+            lineStyle: {
+              color: "#e20808",
+            },
+            areaStyle: {
+              color: "#ef7676",
+            },
+          },
+          moveHandleStyle: {
+            color: "#e83f3f",
+          },
+          brushSelect: false,
+          emphasis: {
+            handleStyle: {
+              color: "#f29191",
+              borderColor: "#f29191",
+            },
+            moveHandleStyle: {
+              color: "#e83f3f",
+            },
+          },
+        },
+      ],
+      series: [
+        {
+          name: "评分",
+          type: "line",
+          color: "#ee4720",
+          data: this.businessData.reviews
+            .map((item) => {
+              const date = new Date(item.rev_timestamp);
+              return {
+                date: date
+                  .toLocaleString("zh-CN", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                  })
+                  .replace(/\//g, "-"),
+                stars: item.rev_stars,
+              };
+            })
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((item) => [item.date, item.stars]),
+        },
+      ],
+    };
+    this.chartOption2 = {
+      xAxis: {
+        type: "category",
+        data: this.businessData.star_count.map((item) => item.rev_stars),
+        axisLabel: {
+          formatter: "{value}星",
+        },
+      },
+      yAxis: {
+        type: "value",
+        name: "评分",
+        axisLabel: {
+          formatter: "{value}分",
+        },
+      },
+      series: [
+        {
+          name: "评分",
+          type: "bar",
+          data: this.businessData.star_count.map((item) => item.count),
+        },
+      ],
+    };
+    loadingInstance.close();
   },
 };
 </script>
