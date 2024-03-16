@@ -89,15 +89,23 @@ export default {
           url: "/login/?type=user&name=" + this.loginForm.username,
           method: "get",
         }).then((response) => {
-          this.$router.push("/UserHome");
+          if (response.status === "success") {
+            this.$router.push("/UserHome");
+          } else {
+            this.$message.error("登录失败");
+          }
         });
       } else {
         localStorage.setItem("user", JSON.stringify(this.loginForm));
         request({
-          url: "/login?type=business&name=" + this.loginForm.username,
+          url: "/login/?type=business&name=" + this.loginForm.username,
           method: "get",
         }).then((response) => {
-          this.$router.push("/BusinessBoard");
+          if (response.status === "success") {
+            this.$router.push("/BusinessBoard");
+          } else {
+            this.$message.error("登录失败");
+          }
         });
       }
       this.showLoginDialog = false;

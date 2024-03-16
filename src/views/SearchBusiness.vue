@@ -58,13 +58,19 @@
             <li v-for="i in 4" :key="i" class="list-item">
               <div class="card-container">
                 <BusinessCard
-                  v-if="businessDataLoaded"
+                  v-if="
+                    businessDataLoaded &&
+                    this.businessData[(this.pagenum - 1) * 8 + (i - 1) * 3 + 0]
+                  "
                   :data="
                     this.businessData[(this.pagenum - 1) * 8 + (i - 1) * 3 + 0]
                   "
                 />
                 <BusinessCard
-                  v-if="businessDataLoaded"
+                  v-if="
+                    businessDataLoaded &&
+                    this.businessData[(this.pagenum - 1) * 8 + (i - 1) * 3 + 1]
+                  "
                   :data="
                     this.businessData[(this.pagenum - 1) * 8 + (i - 1) * 3 + 1]
                   "

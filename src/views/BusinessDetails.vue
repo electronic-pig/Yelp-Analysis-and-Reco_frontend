@@ -83,96 +83,115 @@
           ></bm-marker>
         </baidu-map>
         <el-divider />
-        <el-card
-          class="rounded-card"
-          :class="
-            getBgClass(this.details.review[i + this.pagenum - 2].sentiment)
-          "
-          v-for="i in 8"
-          :key="i"
-        >
-          <div class="head-wapper">
-            <div style="display: flex; align-items: center">
-              <el-avatar :src="getRandomAvatarUrl()" size="small" />&nbsp;<span
-                style="font-weight: bold"
-                >{{
-                  this.details.review[i + this.pagenum - 2].rev_user_name
-                }}</span
-              >
-              <span
-                style="display: flex; align-items: center; margin-left: 2vw"
-              >
-                <el-icon
-                  v-for="o in this.details.review[i + this.pagenum - 2]
-                    .rev_stars"
-                  :key="o"
-                  size="28"
-                  color="rgb(255, 100, 61)"
-                  ><StarFilled
-                /></el-icon>
-                <el-icon
-                  v-for="o in 5 -
-                  this.details.review[i + this.pagenum - 2].rev_stars"
-                  :key="o"
-                  size="23"
-                  color="rgb(255, 100, 61)"
-                  ><Star
-                /></el-icon>
-              </span>
-            </div>
-            <span class="rev-time">{{
-              this.details.review[i + this.pagenum - 2].rev_timestamp
-            }}</span>
-          </div>
-          <p class="review-text">
-            {{ this.details.review[i + this.pagenum - 2].rev_text }}
-          </p>
-          <div class="judge">
-            <div class="judge-item">
-              <div class="img-wapper">
-                <img
-                  src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_helpful_bulb_v2.yji-927d56e36e3a11c12e58.svg"
-                  alt="useful"
-                />
+        <ul class="list">
+          <li v-for="i in 8" :key="i" class="list-item">
+            <el-card
+              class="rounded-card"
+              :class="
+                getBgClass(
+                  this.details.review[i + (this.pagenum - 1) * 8 - 1].sentiment
+                )
+              "
+              v-if="this.details.review[i + (pagenum - 1) * 8 - 1]"
+            >
+              <div class="head-wapper">
+                <div style="display: flex; align-items: center">
+                  <el-avatar
+                    :src="getRandomAvatarUrl()"
+                    size="small"
+                  />&nbsp;<span style="font-weight: bold">{{
+                    this.details.review[i + (this.pagenum - 1) * 8 - 1]
+                      .rev_user_name
+                  }}</span>
+                  <span
+                    style="display: flex; align-items: center; margin-left: 2vw"
+                  >
+                    <el-icon
+                      v-for="o in this.details.review[
+                        i + (this.pagenum - 1) * 8 - 1
+                      ].rev_stars"
+                      :key="o"
+                      size="28"
+                      color="rgb(255, 100, 61)"
+                      ><StarFilled
+                    /></el-icon>
+                    <el-icon
+                      v-for="o in 5 -
+                      this.details.review[i + (this.pagenum - 1) * 8 - 1]
+                        .rev_stars"
+                      :key="o"
+                      size="23"
+                      color="rgb(255, 100, 61)"
+                      ><Star
+                    /></el-icon>
+                  </span>
+                </div>
+                <span class="rev-time">{{
+                  this.details.review[i + (this.pagenum - 1) * 8 - 1]
+                    .rev_timestamp
+                }}</span>
               </div>
-              <span class="judge-info">Useful</span>&nbsp;<span
-                class="judge-info-count"
-                >{{
-                  this.details.review[i + this.pagenum - 2].rev_useful
-                }}</span
-              >
-            </div>
-            <div class="judge-item">
-              <div class="img-wapper">
-                <img
-                  src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_thanks_v2.yji-1fec900fe14a2fa15c10.svg"
-                  alt="cool"
-                />
-              </div>
-              <span class="judge-info">Cool</span>&nbsp;<span
-                class="judge-info-count"
-                >{{ this.details.review[i + this.pagenum - 2].rev_coll }}</span
-              >
-            </div>
-            <div class="judge-item">
-              <div class="img-wapper">
-                <img
-                  src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_love_this_v2.yji-e4b17143e9d097f34029.svg"
-                  alt="funny"
-                />
-              </div>
-              <span class="judge-info">Funny</span>&nbsp;<span
-                class="judge-info-count"
-                >{{ this.details.review[i + this.pagenum - 2].rev_funny }}</span
-              >
-            </div>
-          </div></el-card
-        >
+              <p class="review-text">
+                {{
+                  this.details.review[i + (this.pagenum - 1) * 8 - 1].rev_text
+                }}
+              </p>
+              <div class="judge">
+                <div class="judge-item">
+                  <div class="img-wapper">
+                    <img
+                      src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_helpful_bulb_v2.yji-927d56e36e3a11c12e58.svg"
+                      alt="useful"
+                    />
+                  </div>
+                  <span class="judge-info">Useful</span>&nbsp;<span
+                    class="judge-info-count"
+                    >{{
+                      this.details.review[i + (this.pagenum - 1) * 8 - 1]
+                        .rev_useful
+                    }}</span
+                  >
+                </div>
+                <div class="judge-item">
+                  <div class="img-wapper">
+                    <img
+                      src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_thanks_v2.yji-1fec900fe14a2fa15c10.svg"
+                      alt="cool"
+                    />
+                  </div>
+                  <span class="judge-info">Cool</span>&nbsp;<span
+                    class="judge-info-count"
+                    >{{
+                      this.details.review[i + (this.pagenum - 1) * 8 - 1]
+                        .rev_cool
+                    }}</span
+                  >
+                </div>
+                <div class="judge-item">
+                  <div class="img-wapper">
+                    <img
+                      src="https://s3-media0.fl.yelpcdn.com/assets/public/24x24_love_this_v2.yji-e4b17143e9d097f34029.svg"
+                      alt="funny"
+                    />
+                  </div>
+                  <span class="judge-info">Funny</span>&nbsp;<span
+                    class="judge-info-count"
+                    >{{
+                      this.details.review[i + (this.pagenum - 1) * 8 - 1]
+                        .rev_funny
+                    }}</span
+                  >
+                </div>
+              </div></el-card
+            >
+          </li>
+        </ul>
       </div>
       <div class="pagination-container">
         <el-pagination
           background
           layout="prev, pager, next"
+          :default-page-size="8"
           :total="total"
           @current-change="handleCurrentChange"
         />
@@ -320,10 +339,19 @@ export default {
   align-items: center;
 }
 
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow: auto;
+}
+
+.list-item {
+  margin: 2vh 0;
+}
+
 .rounded-card {
   border-radius: 6px;
-  width: 100%;
-  margin: 1vh 0;
 }
 
 .rev-time {

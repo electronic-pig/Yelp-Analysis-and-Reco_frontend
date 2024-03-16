@@ -25,19 +25,28 @@
         <li v-for="i in 4" :key="i" class="list-item">
           <div class="card-container">
             <BusinessCard
-              v-if="businessDataLoaded"
+              v-if="
+                businessDataLoaded &&
+                this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 0]
+              "
               :data="
                 this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 0]
               "
             />
             <BusinessCard
-              v-if="businessDataLoaded"
+              v-if="
+                businessDataLoaded &&
+                this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 1]
+              "
               :data="
                 this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 1]
               "
             />
             <BusinessCard
-              v-if="businessDataLoaded"
+              v-if="
+                businessDataLoaded &&
+                this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 2]
+              "
               :data="
                 this.businessData[(this.pagenum - 1) * 12 + (i - 1) * 3 + 2]
               "
@@ -49,19 +58,31 @@
         <li v-for="i in 3" :key="i" class="list-item">
           <div class="card-container">
             <UserCard
-              v-if="userDataLoaded"
+              v-if="
+                userDataLoaded &&
+                this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 0]
+              "
               :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 0]"
             />
             <UserCard
-              v-if="userDataLoaded"
+              v-if="
+                userDataLoaded &&
+                this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 1]
+              "
               :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 1]"
             />
             <UserCard
-              v-if="userDataLoaded"
+              v-if="
+                userDataLoaded &&
+                this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 2]
+              "
               :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 2]"
             />
             <UserCard
-              v-if="userDataLoaded"
+              v-if="
+                userDataLoaded &&
+                this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 3]
+              "
               :data="this.userData[(this.pagenum - 1) * 12 + (i - 1) * 4 + 3]"
             />
           </div>
