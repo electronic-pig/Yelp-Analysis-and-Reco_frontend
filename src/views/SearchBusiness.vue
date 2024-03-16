@@ -9,38 +9,46 @@
         <el-col :span="4">
           <div class="Filter" style="margin-top: 15vh">
             <h3 style="margin: 2px 0">Stars</h3>
-            <el-radio-group v-model="starsFilter">
-              <el-radio value="5">=5星</el-radio>
-              <el-radio value="4">≥4星</el-radio>
-              <el-radio value="3">≥3星</el-radio>
+            <el-radio-group v-model="star_conditon">
+              <el-radio value="5">= 5 stars</el-radio>
+              <el-radio value="4">≥ 4 stars</el-radio>
+              <el-radio value="3">≥ 3 stars</el-radio>
             </el-radio-group>
             <el-divider style="margin: 12px 0" />
           </div>
           <div class="Filter" style="margin-top: 2vh">
             <h3 style="margin: 2px 0">Distance</h3>
-            <el-radio-group v-model="starsFilter">
-              <el-radio value="(0, 1)">0~1 km</el-radio>
-              <el-radio value="(1, 2)">1~2 km</el-radio>
-              <el-radio value="(2, 5)">2~5 km</el-radio>
-              <el-radio value="(5, n)">5+∞ km</el-radio>
+            <el-radio-group v-model="distance_conditon">
+              <el-radio value="1">≤ 1 km</el-radio>
+              <el-radio value="2">≤ 2 km</el-radio>
+              <el-radio value="5">≤ 5 km</el-radio>
             </el-radio-group>
           </div>
         </el-col>
         <el-col :span="16">
           <div class="searchHeader">
             <h1 class="text">Search Result</h1>
-            <el-dropdown class="dropdown" size="large" trigger="click">
+            <el-dropdown
+              class="dropdown"
+              size="large"
+              trigger="click"
+              @command="handleCommand"
+            >
               <span class="el-dropdown-link">
-                SortBy:
+                SortBy
                 <el-icon class="el-icon--right">
                   <arrow-down />
                 </el-icon>
               </span>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item>Stars</el-dropdown-item>
-                  <el-dropdown-item>review_count</el-dropdown-item>
-                  <el-dropdown-item>distance</el-dropdown-item>
+                  <el-dropdown-item command="stars">stars</el-dropdown-item>
+                  <el-dropdown-item command="review_count"
+                    >review_count</el-dropdown-item
+                  >
+                  <el-dropdown-item command="distance"
+                    >distance</el-dropdown-item
+                  >
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -67,7 +75,7 @@
             <el-pagination
               background
               layout="prev, pager, next"
-              :total="total"
+              :total="this.total"
               :default-page-size="8"
               @current-change="handleCurrentChange"
             /></div
@@ -93,31 +101,61 @@ export default {
   },
   data() {
     return {
-      starsFilter: 3,
-      distanceFilter: "(0, 1)",
+      sortBy: "",
+      star_conditon: "",
+      distance_conditon: "",
       businessData: {},
       businessDataLoaded: false,
+      total: 0,
       pagenum: 1,
     };
   },
-  computed: {
-    total() {
-      return this.businessData.length;
-    },
-  },
   mounted() {
-    console.log(this.$route.params.searchValue);
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
     request({
-      url: "/search/?query=" + this.$route.params.searchValue,
+      url:
+        "/search/?query=" +
+        this.$route.params.searchValue +
+        "&sortBy=" +
+        this.sortBy +
+        "&star_conditon=" +
+        this.star_conditon +
+        "&distance_conditon=" +
+        this.distance_conditon,
       method: "get",
     }).then((response) => {
       this.businessData = response;
+      this.total = this.businessData.length;
       this.businessDataLoaded = true;
+      loadingInstance.close();
     });
   },
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    handleCommand(command) {
+      this.sortBy = command;
+      this.businessDataLoaded = false;
+      const loadingInstance = this.$loading({ text: "努力加载中..." });
+      request({
+        url:
+          "/search/?query=" +
+          this.$route.params.searchValue +
+          "&sortBy=" +
+          this.sortBy +
+          "&star_conditon=" +
+          this.star_conditon +
+          "&distance_conditon=" +
+          this.distance_conditon,
+        method: "get",
+      }).then((response) => {
+        this.businessData = response;
+        this.total = this.businessData.length;
+        this.pagenum = 1;
+        this.businessDataLoaded = true;
+        loadingInstance.close();
+      });
     },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;
@@ -151,6 +189,8 @@ export default {
 .el-dropdown-link {
   cursor: pointer;
   color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
 }
 
 .list {
