@@ -46,9 +46,9 @@
             </template></el-table-column
           >
           <el-table-column prop="name" label="商户名" />
+          <el-table-column prop="categories" label="类目" />
           <el-table-column prop="address" label="地址" />
           <el-table-column prop="review_count" label="评论数量" />
-          <el-table-column prop="categories" label="类目" />
           <el-table-column prop="stars" label="评分">
             <template #default="scope">
               <el-rate

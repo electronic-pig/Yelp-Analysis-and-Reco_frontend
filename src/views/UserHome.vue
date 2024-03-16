@@ -159,12 +159,6 @@ export default {
   margin: 0 2vw;
 }
 
-.card-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 2vw;
-}
-
 .reco {
   font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 32px;
@@ -184,6 +178,12 @@ export default {
 
 .list-item {
   margin: 20px 0;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2vw;
 }
 
 .pagination-container {

@@ -3,6 +3,7 @@ import PortalView from "@/views/PortalView.vue";
 import BusinessBoard from "@/views/BusinessBoard.vue";
 import ManageAdvice from "@/views/ManageAdvice.vue";
 import UserHome from "@/views/UserHome.vue";
+import SearchBusiness from "@/views/SearchBusiness.vue";
 import BusinessDetails from "@/views/BusinessDetails.vue";
 import BusinessAnalysis from "@/views/BusinessAnalysis.vue";
 import UserAnalysis from "@/views/UserAnalysis.vue";
@@ -21,6 +22,11 @@ const router = createRouter({
       path: "/UserHome",
       name: "UserHome",
       component: UserHome,
+    },
+    {
+      path: "/SearchBusiness",
+      name: "SearchBusiness",
+      component: SearchBusiness,
     },
     {
       path: "/ManageAdvice",
