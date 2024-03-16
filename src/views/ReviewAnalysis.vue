@@ -23,7 +23,7 @@ export default {
   components: {
     AnalysisHead,
     BaseChart,
-    FooterView
+    FooterView,
   },
   data() {
     return {
@@ -120,7 +120,12 @@ export default {
           color: "#e54035",
         },
       },
-      yAxis: {},
+      yAxis: {
+        type: "value",
+        axisLabel: {
+          formatter: "{value}次",
+        },
+      },
       color: ["#e54035"],
       series: [
         {
@@ -161,7 +166,12 @@ export default {
           color: "#e54035",
         },
       },
-      yAxis: {},
+      yAxis: {
+        type: "value",
+        axisLabel: {
+          formatter: "{value}次",
+        },
+      },
       color: ["#e54035"],
       series: [
         {

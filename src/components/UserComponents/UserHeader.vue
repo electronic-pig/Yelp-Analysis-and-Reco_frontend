@@ -83,7 +83,11 @@ export default {
       }
     },
     handleChangeReco(newValue) {
-      this.$emit("changeReco", newValue);
+      if (this.$route.name !== "UserHome") {
+        this.$router.push({ name: "UserHome" });
+      } else {
+        this.$emit("changeReco", newValue);
+      }
     },
   },
 };
