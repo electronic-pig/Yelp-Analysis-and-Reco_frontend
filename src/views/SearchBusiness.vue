@@ -1,7 +1,8 @@
 <template>
   <el-container>
     <el-header class="el-header">
-      <UserHeader @updateReco="handleUpdateReco" />
+      <el-button type="primary" @click="goBack">返回</el-button>
+      <UserHeader />
     </el-header>
     <el-main>
       <el-row>
@@ -104,12 +105,19 @@ export default {
       return this.businessData.length;
     },
   },
-  methods: {
-    handleUpdateReco(response) {
+  mounted() {
+    console.log(this.$route.params.searchValue);
+    request({
+      url: "/search/?query=" + this.$route.params.searchValue,
+      method: "get",
+    }).then((response) => {
       this.businessData = response;
-      console.log(this.businessData);
       this.businessDataLoaded = true;
-      this.pagenum = 1;
+    });
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
     },
     handleCurrentChange(newPage) {
       this.pagenum = newPage;

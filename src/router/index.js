@@ -24,7 +24,7 @@ const router = createRouter({
       component: UserHome,
     },
     {
-      path: "/SearchBusiness",
+      path: "/SearchBusiness/:searchValue",
       name: "SearchBusiness",
       component: SearchBusiness,
     },

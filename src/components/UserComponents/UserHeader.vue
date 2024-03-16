@@ -47,7 +47,6 @@ export default {
       cityValue: "Abington",
       userData: JSON.parse(localStorage.getItem("user")) || {},
       citys: citys,
-      isBusinessReco: true,
     };
   },
   watch: {
@@ -58,40 +57,20 @@ export default {
         method: "get",
       })
         .then((response) => {
-          this.$emit("updateReco", response);
+          this.$emit("cityChangeReco", response);
         })
         .finally(() => {
           loadingInstance.close();
         });
     },
   },
-  mounted() {
-    const loadingInstance = this.$loading({ text: "努力加载中..." });
-    request({
-      url: "/recommend/?city=" + this.cityValue,
-      method: "get",
-    })
-      .then((response) => {
-        this.$emit("updateReco", response);
-      })
-      .finally(() => {
-        loadingInstance.close();
-      });
-  },
-  emits: ["updateReco", "changeReco"],
+  emits: ["cityChangeReco", "changeReco", "searchBusiness"],
   methods: {
     handleSearch() {
-      const loadingInstance = this.$loading({ text: "努力加载中..." });
-      request({
-        url: "/search/?query=" + this.searchValue,
-        method: "get",
-      })
-        .then((response) => {
-          this.$emit("updateReco", response);
-        })
-        .finally(() => {
-          loadingInstance.close();
-        });
+      this.$router.push({
+        name: "SearchBusiness",
+        params: { searchValue: this.searchValue },
+      });
     },
     handleCommand(command) {
       if (command === "logout") {
@@ -99,7 +78,6 @@ export default {
       }
     },
     handleChangeReco(newValue) {
-      this.isBusinessReco = newValue;
       this.$emit("changeReco", newValue);
     },
   },

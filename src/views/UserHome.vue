@@ -2,7 +2,7 @@
   <el-container>
     <el-header class="el-header">
       <UserHeader
-        @updateReco="handleUpdateReco"
+        @cityChangeReco="handleCityChangeReco"
         @changeReco="handleChangeReco"
       />
     </el-header>
@@ -125,8 +125,22 @@ export default {
       }
     },
   },
+  mounted() {
+    const loadingInstance = this.$loading({ text: "努力加载中..." });
+    request({
+      url: "/recommend/?city=Abington", //默认推荐城市
+      method: "get",
+    })
+      .then((response) => {
+        this.businessData = response;
+        this.businessDataLoaded = true;
+      })
+      .finally(() => {
+        loadingInstance.close();
+      });
+  },
   methods: {
-    handleUpdateReco(response) {
+    handleCityChangeReco(response) {
       this.businessData = response;
       this.businessDataLoaded = true;
       this.pagenum = 1;
