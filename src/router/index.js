@@ -27,6 +27,10 @@ const router = createRouter({
       path: "/SearchBusiness/:searchValue",
       name: "SearchBusiness",
       component: SearchBusiness,
+      props: true,
+      meta: {
+        key: (route) => `${route.fullPath}`,
+      },
     },
     {
       path: "/ManageAdvice",

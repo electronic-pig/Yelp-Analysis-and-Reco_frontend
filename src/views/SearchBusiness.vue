@@ -120,6 +120,31 @@ export default {
       this.distance_condition = newValue;
       this.fetchData();
     },
+    "$route.params.searchValue": {
+      immediate: true,
+      handler(newValue) {
+        this.businessDataLoaded = false;
+        const loadingInstance = this.$loading({ text: "努力加载中..." });
+        request({
+          url:
+            "/search/?query=" +
+            newValue +
+            "&sortBy=" +
+            this.sortBy +
+            "&star_condition=" +
+            this.star_condition +
+            "&distance_condition=" +
+            this.distance_condition,
+          method: "get",
+        }).then((response) => {
+          this.businessData = response;
+          this.total = this.businessData.length;
+          this.pagenum = 1;
+          this.businessDataLoaded = true;
+          loadingInstance.close();
+        });
+      },
+    },
   },
   mounted() {
     this.fetchData();
