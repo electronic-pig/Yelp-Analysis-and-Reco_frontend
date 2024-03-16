@@ -9,7 +9,7 @@
         <el-col :span="4">
           <div class="Filter" style="margin-top: 15vh">
             <h3 style="margin: 2px 0">Stars</h3>
-            <el-radio-group v-model="star_conditon">
+            <el-radio-group v-model="star_condition">
               <el-radio value="5">= 5 stars</el-radio>
               <el-radio value="4">≥ 4 stars</el-radio>
               <el-radio value="3">≥ 3 stars</el-radio>
@@ -18,7 +18,7 @@
           </div>
           <div class="Filter" style="margin-top: 2vh">
             <h3 style="margin: 2px 0">Distance</h3>
-            <el-radio-group v-model="distance_conditon">
+            <el-radio-group v-model="distance_condition">
               <el-radio value="1">≤ 1 km</el-radio>
               <el-radio value="2">≤ 2 km</el-radio>
               <el-radio value="5">≤ 5 km</el-radio>
@@ -49,6 +49,7 @@
                   <el-dropdown-item command="distance"
                     >distance</el-dropdown-item
                   >
+                  <el-dropdown-item command="">default</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
@@ -102,33 +103,26 @@ export default {
   data() {
     return {
       sortBy: "",
-      star_conditon: "",
-      distance_conditon: "",
+      star_condition: "",
+      distance_condition: "",
       businessData: {},
       businessDataLoaded: false,
       total: 0,
       pagenum: 1,
     };
   },
+  watch: {
+    star_condition(newValue) {
+      this.star_condition = newValue;
+      this.fetchData();
+    },
+    distance_condition(newValue) {
+      this.distance_condition = newValue;
+      this.fetchData();
+    },
+  },
   mounted() {
-    const loadingInstance = this.$loading({ text: "努力加载中..." });
-    request({
-      url:
-        "/search/?query=" +
-        this.$route.params.searchValue +
-        "&sortBy=" +
-        this.sortBy +
-        "&star_conditon=" +
-        this.star_conditon +
-        "&distance_conditon=" +
-        this.distance_conditon,
-      method: "get",
-    }).then((response) => {
-      this.businessData = response;
-      this.total = this.businessData.length;
-      this.businessDataLoaded = true;
-      loadingInstance.close();
-    });
+    this.fetchData();
   },
   methods: {
     goBack() {
@@ -136,6 +130,12 @@ export default {
     },
     handleCommand(command) {
       this.sortBy = command;
+      this.fetchData();
+    },
+    handleCurrentChange(newPage) {
+      this.pagenum = newPage;
+    },
+    fetchData() {
       this.businessDataLoaded = false;
       const loadingInstance = this.$loading({ text: "努力加载中..." });
       request({
@@ -144,10 +144,10 @@ export default {
           this.$route.params.searchValue +
           "&sortBy=" +
           this.sortBy +
-          "&star_conditon=" +
-          this.star_conditon +
-          "&distance_conditon=" +
-          this.distance_conditon,
+          "&star_condition=" +
+          this.star_condition +
+          "&distance_condition=" +
+          this.distance_condition,
         method: "get",
       }).then((response) => {
         this.businessData = response;
@@ -156,9 +156,6 @@ export default {
         this.businessDataLoaded = true;
         loadingInstance.close();
       });
-    },
-    handleCurrentChange(newPage) {
-      this.pagenum = newPage;
     },
   },
 };
