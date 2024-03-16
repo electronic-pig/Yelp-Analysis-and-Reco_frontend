@@ -65,11 +65,16 @@ export default {
     },
   },
   emits: ["cityChangeReco", "changeReco", "searchBusiness"],
+  mounted() {
+    if (this.$route.params.city) {
+      this.cityValue = this.$route.params.city;
+    }
+  },
   methods: {
     handleSearch() {
       this.$router.push({
         name: "SearchBusiness",
-        params: { searchValue: this.searchValue },
+        params: { city: this.cityValue, searchValue: this.searchValue },
       });
     },
     handleCommand(command) {
