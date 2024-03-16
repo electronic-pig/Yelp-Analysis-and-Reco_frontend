@@ -4,6 +4,7 @@
   </router-link>
   <div class="search-wrapper">
     <el-select
+      v-if="this.$route.name == 'UserHome'"
       class="city-select"
       v-model="cityValue"
       filterable
@@ -17,7 +18,9 @@
       />
     </el-select>
     <el-input
-      class="search-box"
+      :class="
+        $route.name === 'UserHome' ? 'UserHome-style' : 'SearchBusiness-style'
+      "
       placeholder="搜索"
       v-model="searchValue"
       clearable
@@ -107,12 +110,17 @@ export default {
   align-items: center;
 }
 
-.search-box {
+.UserHome-style {
   width: 30vw;
   margin-right: 10px;
 }
 
-.search-box :deep(.el-input__wrapper) {
+.UserHome-style :deep(.el-input__wrapper) {
   border-radius: 0 4px 4px 0;
+}
+
+.SearchBusiness-style {
+  width: 50vw;
+  margin-right: 90px;
 }
 </style>

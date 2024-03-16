@@ -1,7 +1,7 @@
 <template>
   <div class="user-wapper">
     <el-switch
-      v-if="userData.identity === 'user'"
+      v-if="userData.identity === 'user' && this.$route.name == 'UserHome'"
       class="switch"
       v-model="isBusinessReco"
       inline-prompt

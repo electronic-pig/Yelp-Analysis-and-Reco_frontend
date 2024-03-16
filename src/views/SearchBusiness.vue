@@ -10,6 +10,7 @@
           <div class="Filter" style="margin-top: 15vh">
             <h3 style="margin: 2px 0">Stars</h3>
             <el-radio-group v-model="star_condition">
+              <el-radio value="">All</el-radio>
               <el-radio value="5">= 5 stars</el-radio>
               <el-radio value="4">≥ 4 stars</el-radio>
               <el-radio value="3">≥ 3 stars</el-radio>
@@ -19,6 +20,7 @@
           <div class="Filter" style="margin-top: 2vh">
             <h3 style="margin: 2px 0">Distance</h3>
             <el-radio-group v-model="distance_condition">
+              <el-radio value="">All</el-radio>
               <el-radio value="1">≤ 1 km</el-radio>
               <el-radio value="2">≤ 2 km</el-radio>
               <el-radio value="5">≤ 5 km</el-radio>

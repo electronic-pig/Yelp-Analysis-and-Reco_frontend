@@ -89,6 +89,7 @@ export default {
           url: "/login/?type=user&name=" + this.loginForm.username,
           method: "get",
         }).then((response) => {
+          //唯一指定用户名Shari,密码无要求
           if (response.status === "success") {
             this.$router.push("/UserHome");
           } else {
@@ -101,6 +102,7 @@ export default {
           url: "/login/?type=business&name=" + this.loginForm.username,
           method: "get",
         }).then((response) => {
+          //唯一指定商户名asdf,密码无要求
           if (response.status === "success") {
             this.$router.push("/BusinessBoard");
           } else {
