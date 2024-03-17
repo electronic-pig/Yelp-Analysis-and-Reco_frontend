@@ -2,7 +2,7 @@
   <div class="center-container">
     <div class="animated-text">
       <div class="logo">
-        <img src="@/assets/icon/yelp.svg" />
+        <img src="@/assets/icon/yelp.svg" alt="logo"/>
       </div>
       <h1>点评数据分析与推荐</h1>
       <h3>Yelp Reviews Analysis and Recommendation</h3>

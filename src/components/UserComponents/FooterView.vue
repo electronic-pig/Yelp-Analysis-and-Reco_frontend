@@ -11,14 +11,14 @@
       <img
         style="vertical-align: bottom"
         src="https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_design_cdn/7ef71bf77a33/assets/img/brand/logo_desktop.svg"
-        alt="Yelp logo"
+        alt="logo"
         width="38"
         height="19"
       />,
       <img
         style="vertical-align: bottom"
         src="https://s3-media0.fl.yelpcdn.com/assets/srv0/yelp_design_cdn/cabcef1daea2/assets/img/brand/burst_red.svg"
-        alt="Yelp burst"
+        alt="burst"
         width="14"
         height="16"
       />

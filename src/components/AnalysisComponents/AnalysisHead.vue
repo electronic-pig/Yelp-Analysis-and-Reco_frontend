@@ -3,7 +3,7 @@
     <el-col :span="2"
       ><img
         class="logo"
-        src="@/assets/icon/yelp_dark.svg"
+        src="@/assets/icon/yelp_dark.svg" alt="logo"
         @click="routerToHome"
     /></el-col>
     <el-col :span="4"

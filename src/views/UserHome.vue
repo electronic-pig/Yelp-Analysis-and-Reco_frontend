@@ -10,7 +10,7 @@
       <div class="carousel">
         <el-carousel trigger="click" height="80vh">
           <el-carousel-item v-for="item in imageUrl" :key="item">
-            <img :src="item.url" alt="image" />
+            <img :src="item.url" alt="img" />
           </el-carousel-item>
         </el-carousel>
       </div>
