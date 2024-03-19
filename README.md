@@ -2,8 +2,10 @@
     <p align="center">
         <img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/c430bbf2-fa74-4235-b078-0f4b7b571353" alt="logo" width="500" />
     </p>
-  
+    <p align="center" style="font-size: 26px;">Yelp-Analysis-and-Reco</p>
+
 ![GitHub License](https://img.shields.io/github/license/electronic-pig/Yelp-Analysis-and-Reco_frontend)
+![Static Badge](https://img.shields.io/badge/contributors-4-lightblue)
 ![node.js version](https://img.shields.io/badge/nodejs-18+-orange.svg)
 ![GitHub Repo stars](https://img.shields.io/github/stars/electronic-pig/Yelp-Analysis-and-Reco_frontend)
 
@@ -12,6 +14,8 @@
 # 简介
 
 这是yelp点评数据分析与推荐项目的前端仓库，是集成了大数据分析及可视化，以及大数据应用开发的WebApp应用.
+
+后端项目请移步[Yelp-Analysis-and-Reco](https://github.com/Labhahaha/Yelp-Analysis-and-Reco).
 
 # 特性
 
@@ -35,7 +39,7 @@
 
 在执行后续步骤之前，请确保您配置好了以下环境：
 
-- nodejs ≥ 18
+- nodejs ≥ 18.19.1
 
 然后在项目根目录执行以下步骤：
 
@@ -55,3 +59,6 @@ npm run dev
 ```sh
 npm run build
 ```
+
+> [!NOTE]
+> 本项目使用的图标及首页图片等均来自[yelp官方网站](https://www.yelp.com/)，开源项目仅作学习交流之用，请遵守相关版权规定
