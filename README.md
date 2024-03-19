@@ -15,11 +15,11 @@
 
 这是yelp点评数据分析与推荐项目的前端仓库，是集成了大数据分析及可视化，以及大数据应用开发的WebApp应用.
 
-后端项目请移步[Yelp-Analysis-and-Reco](https://github.com/Labhahaha/Yelp-Analysis-and-Reco).
+后端仓库请移步[Yelp-Analysis-and-Reco](https://github.com/Labhahaha/Yelp-Analysis-and-Reco).
 
 # 🎉 特性
 
-数据可视化：
+## 数据可视化
 
 - 商户分析
 - 用户分析
@@ -27,7 +27,7 @@
 - 评分分析
 - 打卡分析
 
-应用功能：
+## 应用功能
 
 - 用户端点评推荐
 - 用户端商户搜索
@@ -87,6 +87,11 @@ npm run build
 
 ![首页](https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/28c9ad69-ae7c-49ce-b4da-c761a6a77218)
 
+> [!NOTE]
+> 用户端唯一指定用户名`Shari`，密码任意；商家端唯一指定用户名`asdf`，密码任意
+> 
+> 别问为什么，问就是项目演示需要😅，登录模块不是本项目的重点
+
 > 数据可视化
 
 <table>
@@ -142,7 +147,7 @@ npm run build
 </table>
 
 # 💖 团队成员
-本项目由以下四位开发者共同完成：[electronic-pig](https://github.com/electronic-pig)、[Labhahaha](https://github.com/Labhahaha)、[zf666fz](https://github.com/zf666fz)、[weeadd](https://github.com/weeadd)
+本项目由以下四位开发者共同完成(排名不分先后)：[electronic-pig](https://github.com/electronic-pig)、[Labhahaha](https://github.com/Labhahaha)、[zf666fz](https://github.com/zf666fz)、[weeadd](https://github.com/weeadd)
 
 # 📄 写在最后
 项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏
