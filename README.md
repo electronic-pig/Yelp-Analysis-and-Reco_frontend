@@ -1,35 +1,31 @@
-# frontend
+<div align="center">
+    <p align="center">
+        <img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/c430bbf2-fa74-4235-b078-0f4b7b571353" alt="logo" width="500" />
+    </p>
+  
+![GitHub](https://img.shields.io/github/license/electronic-pig/Yelp-Analysis-and-Reco_frontend)
+![node.js version](https://img.shields.io/badge/nodejs-18+-orange.svg)
+![GitHub Repo stars](https://img.shields.io/github/stars/electronic-pig/Yelp-Analysis-and-Reco_frontend)
+</div>
 
-This template should help get you started developing with Vue 3 in Vite.
+# 简介
 
-## Recommended IDE Setup
+这是yelp点评数据分析与推荐项目的前端仓库，完成了大数据分析及可视化，以及大数据应用开发
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## 项目初始化
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 编译和热加载
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### 编译打包
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
