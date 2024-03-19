@@ -2,13 +2,13 @@
     <p align="center">
         <img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/c430bbf2-fa74-4235-b078-0f4b7b571353" alt="logo" width="500" />
     </p>
-    <p align="center" style="font-size: 26px;">Yelp-Analysis-and-Reco</p>
-
+    
 ![GitHub License](https://img.shields.io/github/license/electronic-pig/Yelp-Analysis-and-Reco_frontend)
 ![Static Badge](https://img.shields.io/badge/contributors-4-lightblue)
 ![node.js version](https://img.shields.io/badge/nodejs-18+-orange.svg)
 ![GitHub Repo stars](https://img.shields.io/github/stars/electronic-pig/Yelp-Analysis-and-Reco_frontend)
 
+<h2 align="center">Yelp-Analysis-and-Reco</h2>
 </div>
 
 # ✨ 简介
@@ -44,7 +44,17 @@
 - Element Plus
 - Apache Echarts
 
-  
+<a title="vue" href="https://cn.vuejs.org/" target="_blank">
+    <img height="64px" src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/5d6e1a71-1ac2-4043-866b-17ae33afadfd"/>
+</a>
+<a title="element-plus" href="https://element-plus.org/zh-CN/" target="_blank">
+    <img height="64px" src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/795c9710-e667-49b8-8514-2cc6663b3f8c"/>
+</a>
+<a title="echarts" href="https://echarts.apache.org/zh/index.html" target="_blank">
+    <img height="64px" src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/0106ecb9-df25-4f3c-a27e-d763a75b14af"/>
+</a>
+
+
 # 🚀 项目运行说明
 
 在执行后续步骤之前，请确保您配置好了以下环境：
@@ -69,6 +79,8 @@ npm run dev
 ```sh
 npm run build
 ```
+> [!NOTE]
+> 若项目的前后端运行在同一局域网下的不同设备上，请务必关闭设备的防火墙(踩过的坑😂)
 
 # 📄 写在最后
 项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏
