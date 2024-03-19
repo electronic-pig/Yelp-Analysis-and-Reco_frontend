@@ -35,7 +35,7 @@
 - 商家端经营推荐
 - 评论情感分析
 
-> [!NOTE]
+> [!Warning]
 > 本项目使用的图标及首页图片等均来自[yelp官方网站](https://www.yelp.com/)，开源项目仅作学习交流之用，请遵守相关版权规定
 
 # 🛠 技术栈
@@ -81,6 +81,68 @@ npm run build
 ```
 > [!NOTE]
 > 若项目的前后端运行在同一局域网下的不同设备上，请务必关闭设备的防火墙(踩过的坑😂)
+
+# 💻 运行截图
+> 项目首页
+
+![首页](https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/28c9ad69-ae7c-49ce-b4da-c761a6a77218)
+
+> 数据可视化
+
+<table>
+    <tr>
+        <td align="center">商户分析</td>
+        <td align="center">用户分析</td>
+        <td align="center">评论分析</td>
+        <td align="center">评分分析</td>
+        <td align="center">打卡分析</td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/1def87ac-3fcd-4da2-8710-01336098e87b"></td>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/65b6ff85-fdcc-444c-8b73-7eb62a38381d"></td>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/611e2552-f661-4926-8c3c-3d180b556a13"></td>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/b2748536-b8dc-4b3a-945d-95db0632b730"></td>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/a0fed411-1d6d-4fcc-8239-4e12cf69aecb"></td>
+    </tr>
+</table>
+
+> 商户详情&评论情感分析
+
+![商家详情](https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/0fd859cc-039c-4ee6-a641-05644e821f80)
+
+> 用户端推荐、搜索
+
+<table>
+    <tr>
+        <td align="center">商户推荐</td>
+        <td align="center">用户搜索</td>
+        <td align="center">好友推荐</td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/629e1db3-7b61-4c5d-bd63-ce429684f6dc"></td>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/285b83a8-3f9d-4724-bfbf-9b64804835c6"></td>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/ad97e875-6336-43f5-8c35-538ffe74e29f"></td>
+    </tr>
+</table>
+
+> [!Important]
+> 由于yelp官方开源[数据集](https://www.yelp.com/dataset)中商户数据与图片数据并不完全对应，因此商户卡片的图像为随机选取
+
+> 商家端
+
+<table>
+    <tr>
+        <td align="center">商户仪表板</td>
+        <td align="center">经营建议</td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/c608bfcc-0490-471b-af61-0688d2ae8ba3"></td>
+        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/6b3ece34-3561-43a4-be17-5cd56cc2b8b2"></td>
+    </tr>
+</table>
+
+# 💖 团队成员
+本项目由以下四位开发者共同完成：[electronic-pig](https://github.com/electronic-pig)、[Labhahaha](https://github.com/Labhahaha)、[zf666fz](https://github.com/zf666fz)、[weeadd](https://github.com/weeadd)
 
 # 📄 写在最后
 项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏
