@@ -69,13 +69,14 @@ npm install
 ```
 
 ## 编译运行
-
+- 在`main.js`中填写你的BaiduMap_api_key
+- 在`.env.development`中填写你的后端服务地址
 ```sh
 npm run dev
 ```
 
 ## 打包部署(可选)
-
+- 在`.env.production`中填写你的后端服务地址
 ```sh
 npm run build
 ```

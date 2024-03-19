@@ -28,5 +28,3 @@ coverage
 *.sw?
 
 .VSCodeCounter
-
-/public/photos
