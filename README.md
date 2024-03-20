@@ -4,6 +4,7 @@
     </p>
     
 ![GitHub License](https://img.shields.io/github/license/electronic-pig/Yelp-Analysis-and-Reco_frontend)
+![GitHub Release](https://img.shields.io/github/v/release/electronic-pig/Yelp-Analysis-and-Reco_frontend)
 ![Static Badge](https://img.shields.io/badge/contributors-4-lightblue)
 ![node.js version](https://img.shields.io/badge/nodejs-18+-orange.svg)
 ![GitHub Repo stars](https://img.shields.io/github/stars/electronic-pig/Yelp-Analysis-and-Reco_frontend)
