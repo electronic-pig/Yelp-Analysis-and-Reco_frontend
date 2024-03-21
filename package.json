@@ -10,16 +10,15 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0",
     "axios": "^1.6.7",
+    "element-plus": "^2.6.0",
     "echarts": "^5.5.0",
     "echarts-wordcloud": "^2.1.0",
-    "element-plus": "^2.6.0",
-    "feather-icons": "^4.29.1",
     "normalize.css": "^8.0.1",
-    "vue": "^3.4.21",
     "vue-baidu-map-3x": "^1.0.35",
-    "vue-feather": "^2.0.0",
-    "vue-router": "^4.3.0"
+    "vue-feather": "^2.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

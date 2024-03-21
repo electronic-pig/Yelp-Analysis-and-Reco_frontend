@@ -197,6 +197,7 @@ export default {
         startAngle: 75,
       },
       series: {
+        name: "数量",
         type: "bar",
         color: "#ee4720",
         data: response5.map((item) => item.avg_stars.toFixed(1)),
@@ -226,6 +227,7 @@ export default {
         data: response6.map((item) => item.category),
       },
       series: {
+        name: "数量",
         type: "bar",
         color: "#af0606",
         data: response6.map((item) => item.count),

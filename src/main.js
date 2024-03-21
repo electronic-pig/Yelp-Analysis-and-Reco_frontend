@@ -19,7 +19,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
 app.use(BaiduMap, {
-  ak: "your_BaiduMap_api_key",
+  ak: "iC8mLrb6MoMuHu3y9hVVD6TMFpFordqQ",
 });
 app.component(VueFeather.name, VueFeather);
 app.use(router).use(ElementPlus, { locale: zhCn }).mount("#app");
