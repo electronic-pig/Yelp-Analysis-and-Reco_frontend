@@ -4,6 +4,7 @@
     </p>
     
 ![GitHub License](https://img.shields.io/github/license/electronic-pig/Yelp-Analysis-and-Reco_frontend)
+![GitHub Release](https://img.shields.io/github/v/release/electronic-pig/Yelp-Analysis-and-Reco_frontend)
 ![Static Badge](https://img.shields.io/badge/contributors-4-lightblue)
 ![node.js version](https://img.shields.io/badge/nodejs-18+-orange.svg)
 ![GitHub Repo stars](https://img.shields.io/github/stars/electronic-pig/Yelp-Analysis-and-Reco_frontend)
@@ -151,4 +152,4 @@ npm run build
 本项目由以下四位开发者共同完成(排名不分先后)：[electronic-pig](https://github.com/electronic-pig)、[Labhahaha](https://github.com/Labhahaha)、[zf666fz](https://github.com/zf666fz)、[weeadd](https://github.com/weeadd)
 
 # 📄 写在最后
-项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏
+项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏🙏
