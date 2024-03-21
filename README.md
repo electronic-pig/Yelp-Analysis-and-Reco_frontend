@@ -115,25 +115,28 @@ npm run build
 
 > 商户详情&评论情感分析
 
-![商家详情](https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/0fd859cc-039c-4ee6-a641-05644e821f80)
+![商家详情](https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/fe525a1c-5c69-4962-9dd3-9f3e617791c4)
 
-> 用户端推荐、搜索
+> 用户端推荐
 
 <table>
     <tr>
         <td align="center">商户推荐</td>
-        <td align="center">用户搜索</td>
         <td align="center">好友推荐</td>
     </tr>
     <tr>
         <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/629e1db3-7b61-4c5d-bd63-ce429684f6dc"></td>
-        <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/285b83a8-3f9d-4724-bfbf-9b64804835c6"></td>
         <td><img src="https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/ad97e875-6336-43f5-8c35-538ffe74e29f"></td>
     </tr>
 </table>
 
 > [!Important]
 > 由于yelp官方开源[数据集](https://www.yelp.com/dataset)中商户数据与图片数据并不完全对应，因此商户卡片的图像为随机选取
+
+> 搜索与筛选
+
+![搜索与筛选](https://github.com/electronic-pig/Yelp-Analysis-and-Reco_frontend/assets/103497254/d86b9dea-8633-4579-bb84-ed11bfb17e4b)
+
 
 > 商家端
 
@@ -152,4 +155,4 @@ npm run build
 本项目由以下四位开发者共同完成(排名不分先后)：[electronic-pig](https://github.com/electronic-pig)、[Labhahaha](https://github.com/Labhahaha)、[zf666fz](https://github.com/zf666fz)、[weeadd](https://github.com/weeadd)
 
 # 📄 写在最后
-项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏🙏
+项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏🙏🙏
