@@ -9,7 +9,7 @@
 ![node.js version](https://img.shields.io/badge/nodejs-18+-orange.svg)
 ![GitHub Repo stars](https://img.shields.io/github/stars/electronic-pig/Yelp-Analysis-and-Reco_frontend)
 
-    <h2 align="center">Yelp-Analysis-and-Reco</h2>
+<h2 align="center">Yelp-Analysis-and-Reco</h2>
 </div>
 
 # ✨ 简介
